@@ -1,8 +1,8 @@
 # GeoprocessingAppstore 
 
-Based on ESRI Geoportal (https://github.com/Esri/geoportal-server)
-Information about modifies ESRI files can be found here: https://github.com/GeoinformationSystems/GeoprocessingAppstore/blob/master/src/de/tudresden/gis/docu/modifications
-Information about used tutorials/howtos can be found here: https://github.com/GeoinformationSystems/GeoprocessingAppstore/blob/master/src/de/tudresden/gis/docu/readme
+Based on ESRI Geoportal (https://github.com/Esri/geoportal-server).<br/><br/>
+Information about modified ESRI files can be found here: https://github.com/GeoinformationSystems/GeoprocessingAppstore/blob/master/src/de/tudresden/gis/docu/modifications<br/>
+Information about used tutorials/howtos can be found here: https://github.com/GeoinformationSystems/GeoprocessingAppstore/blob/master/src/de/tudresden/gis/docu/readme<br/>
 
 The Geoprocessing Appstore is community platform to share geoprocessing concepts and scripts.
 A live demo will be available soon.
