@@ -84,9 +84,9 @@ public class DiscoveredRecordAdapter implements IFeedRecord {
   public String getAbstract() {
     String abstr = select(Meaning.MEANINGTYPE_ABSTRACT);
     abstr = abstr.replaceAll("\\\n", " ");
-    if (abstr.length()>253) {
-      abstr = abstr.substring(0, 252) + "...";
-    }
+//    if (abstr.length()>253) {
+//      abstr = abstr.substring(0, 252) + "...";
+//    }
     return abstr;
   }
 

@@ -75,24 +75,8 @@ window.onload = function() {
 	var contextPath =  "${pageContext.request.contextPath}";
 	var u = contextPath+"/rest/manage/document?list=recent";
 	var detailPage= contextPath+"/catalog/search/resource/details.page?uuid=";
-	var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", u, false );
-    xmlHttp.send( null );
-    var jsonO =  JSON.parse(xmlHttp.responseText);
-    //show results
-    //id,title,user,date,abstract
-	var out = "";   
-	for(var i = 0; i < jsonO.length; i++) {
-		out += "<table  style='width:100%;border:1px solid grey;margin-bottom:1px;height:75px;'>";
-        out += "<tr><th colspan='2' rowspan='2' style='text-align: left;vertical-align: top'><a href="+detailPage+jsonO[i].id+">"+jsonO[i].title+"</a></th><td style='text-align: right'><font size='-2'>"+jsonO[i].user+"</font></td><tr><td style='text-align: right'><font size='-2'>"+jsonO[i].date+"</font></td></tr></tr>";
-        out += "<tr><td style='text-align: left'><font size='-1'>"+jsonO[i].abstract+"</font></td></tr>";
-        out += "</table>";
-    }
-	dojo.byId("most-recent-results").innerHTML = out;
-
-	//get JSON (top rated)
-	var u = contextPath+"/rest/manage/document?list=top";
-	var detailPage= contextPath+"/catalog/search/resource/details.page?uuid=";
+	var executePage= contextPath+"/catalog/wps-js/run.html?uuid=";
+	var downloadLink= contextPath+"/rest/manage/document?download=";
 	var imagePath = contextPath+"/catalog/images/";
 	var xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "GET", u, false );
@@ -103,8 +87,27 @@ window.onload = function() {
 	var out = "";   
 	for(var i = 0; i < jsonO.length; i++) {
 		out += "<table  style='width:100%;border:1px solid grey;margin-bottom:1px;height:75px;'>";
-        out += "<tr><th colspan='2' rowspan='2' style='text-align: left;vertical-align: top;'><a href="+detailPage+jsonO[i].id+">"+jsonO[i].title+"</a></th><td style='text-align: right'><font size='-2'>"+jsonO[i].user+"    |"+jsonO[i].up+"<img src='"+imagePath+"asn-vote-up.png'  height='14' width='14'>"+jsonO[i].down+"<img src='"+imagePath+"asn-vote-down.png'  height='14' width='14'></font></td><tr><td style='text-align: right'><font size='-2'>"+jsonO[i].date+"</font></td></tr></tr>";
-        out += "<tr><td style='text-align: left'><font size='-1'>"+jsonO[i].abstract+"</font></td></tr>";																																	
+        out += "<tr><th colspan='2' rowspan='2' style='text-align: left;vertical-align: top'><a href="+detailPage+jsonO[i].id+">"+jsonO[i].title+"</a></th><td style='text-align: right'><font size='-2'>"+jsonO[i].user+"</font>  <a href="+downloadLink+jsonO[i].id+"><img src='"+imagePath+"mr_harvest_inact.gif'  height='14' width='14' title='Download'></a><a href="+executePage+jsonO[i].id+"><img src='"+imagePath+"ContentType_geographicService.png'  height='14' width='14' title='Execute'></a></td><tr><td style='text-align: right'><font size='-2'>"+jsonO[i].date+"</font></td></tr></tr>";
+        out += "<tr><td style='text-align: left'><font size='-1'>"+jsonO[i].abstract+"</font></td></tr>";
+       	out += "</table>";    	
+    }
+	dojo.byId("most-recent-results").innerHTML = out;
+
+	//get JSON (top rated)
+	var u = contextPath+"/rest/manage/document?list=top";
+	//var detailPage= contextPath+"/catalog/search/resource/details.page?uuid=";
+	//var imagePath = contextPath+"/catalog/images/";
+	var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", u, false );
+    xmlHttp.send( null );
+    var jsonO =  JSON.parse(xmlHttp.responseText);
+    //show results
+    //id,title,user,date,abstract
+	var out = "";   
+	for(var i = 0; i < jsonO.length; i++) {
+		out += "<table  style='width:100%;border:1px solid grey;margin-bottom:1px;height:75px;'>";
+        out += "<tr><th colspan='2' rowspan='2' style='text-align: left;vertical-align: top;'><a href="+detailPage+jsonO[i].id+">"+jsonO[i].title+"</a></th></a></td><td style='text-align: right'><font size='-2'>"+jsonO[i].user+"    |"+jsonO[i].up+"<img src='"+imagePath+"asn-vote-up.png'  height='14' width='14'>"+jsonO[i].down+"<img src='"+imagePath+"asn-vote-down.png'  height='14' width='14'></font>  <a href="+downloadLink+jsonO[i].id+"><img src='"+imagePath+"mr_harvest_inact.gif'  height='14' width='14' title='Download'></a><a href="+executePage+jsonO[i].id+"><img src='"+imagePath+"ContentType_geographicService.png'  height='14' width='14' title='Execute'></a></td><tr><td style='text-align: right'><font size='-2'>"+jsonO[i].date+"</font></td></tr></tr>";
+        out += "<tr><td style='text-align: left'><font size='-1'>"+jsonO[i].abstract+"</font></td></tr>";	
         out += "</table>";
     }
 	dojo.byId("top-rated-results").innerHTML = out;

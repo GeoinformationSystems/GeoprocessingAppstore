@@ -1,6 +1,6 @@
 package de.tudresden.gis.manage.http;
 import java.io.IOException;
-import java.sql.Connection;
+import java.sql.Connection; 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -26,6 +26,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.esri.gpt.catalog.context.CatalogConfiguration;
+import com.esri.gpt.framework.security.credentials.UsernamePasswordCredentials;
 import com.esri.gpt.framework.sql.ConnectionBroker;
 import com.esri.gpt.framework.sql.ManagedConnection;
 import com.esri.gpt.server.assertion.AsnConfig;
@@ -41,7 +42,7 @@ import org.xml.sax.SAXException;
 /**
  * This class contains static methods related to ratings and frontend view for recent and top rated entries.
  * 
- * @author Bernd Grafe
+ * @author Bernd Grafe, Christin Henzen
  *
  */
 public class HttpHelperMethods {
@@ -129,52 +130,118 @@ public class HttpHelperMethods {
 	}
 	
 	/**
+	 * This method returns a certain entry as json.
+	 * 
+	 * @param id
+	 * @return entry
+	 * @throws SQLException 
+	 */
+	public static String getEntryWithID(String id) throws SQLException {
+		System.out.println("HttpHelperMethod requested id: " + id);
+		String json = "";
+		// sql request
+		Connection con = null;
+		CatalogConfiguration catConf = new CatalogConfiguration();
+		String sTable = catConf.getResourceTableName();
+		String sDataTable = catConf.getResourceDataTableName();
+		String sUserTable = catConf.getUserTableName();
+		try {
+			ConnectionBroker connBroker = new ConnectionBroker(); 
+			ManagedConnection mc = connBroker.returnConnection("");
+			con = mc.getJdbcConnection();
+			Statement stmt = con.createStatement();
+			String sql = "SELECT res.docuuid, title, username, updatedate, xml FROM "
+					+ sTable + " res, " + sUserTable + " us, " + sDataTable
+					+ " data WHERE res.approvalstatus='approved' AND res.id=data.id AND res.owner=us.userid AND res.docuuid='" + id + "'";
+			
+			System.out.println("HttpHelperMethod sql");
+			System.out.println(sql);
+			
+			ResultSet rs = stmt.executeQuery(sql);
+			int pos = 0;
+
+			JSONArray array = new JSONArray();
+			while (rs.next()) {
+				pos++;
+				// create json
+				JSONObject doc = new JSONObject();
+				doc.put("no", pos);
+				doc.put("id", rs.getString("docuuid"));
+				doc.put("title", rs.getString("title"));
+				doc.put("user", rs.getString("username"));
+				doc.put("date", rs.getString("updatedate"));
+				doc.put("abstract", getXmlAbstract(rs.getString("xml")));
+				doc.put("container", getXmlContainer(rs.getString("xml")));
+				doc.put("platform", getXmlPlatform(rs.getString("xml")));
+				array.put(doc);
+			}
+			json = array.toString();
+			con.close();
+		} catch (SQLException | JSONException ex) {
+			System.out.println("HttpHelperMethod:" + ex.getMessage()); 
+		} finally {
+			if (con != null)
+				con.close();
+		}
+		return json;
+	}
+	
+	/**
 	 * This method returns json string for x most recent entries.
 	 * 
 	 * @param count number of entries
 	 * @return json string
+	 * @throws SQLException 
 	 */
-	public static String getRecent (int count){
+	public static String getRecent(int count) throws SQLException {
 		String json = "";
-		//sql request
+		// sql request
 		Connection con = null;
 		CatalogConfiguration catConf = new CatalogConfiguration();
 		String sTable = catConf.getResourceTableName();
-	    String sDataTable = catConf.getResourceDataTableName();
-	    String sUserTable = catConf.getUserTableName();
-		try{
-		ConnectionBroker connBroker = new ConnectionBroker();   //get connection via connectionBroker
-	    ManagedConnection mc = connBroker.returnConnection("");
-	    con = mc.getJdbcConnection();
-	    Statement stmt = con.createStatement();
-	    String sql ="SELECT res.docuuid, title, username, updatedate, xml FROM "+sTable+" res, "+sUserTable+" us, "+sDataTable+" data WHERE res.approvalstatus='approved' AND res.id=data.id AND res.owner=us.userid ORDER BY updatedate DESC LIMIT "+count;
-	    ResultSet rs = stmt.executeQuery(sql);
-	    int pos = 0; 
-	    
-	    JSONArray array = new JSONArray();
-	    while (rs.next()) {
-	    	pos++;
-	    	//create json
-	    	JSONObject doc = new JSONObject();
-	    	doc.put("no", pos);
-	    	doc.put("id", rs.getString("docuuid"));
-	    	doc.put("title", rs.getString("title"));
-	    	doc.put("user", rs.getString("username"));
-	    	doc.put("date", rs.getString("updatedate"));
-	    	doc.put("abstract", getXmlAbstract(rs.getString("xml"))); 
-	    	array.put(doc);
-	    } 
-	    json = array.toString(); 
+		String sDataTable = catConf.getResourceDataTableName();
+		String sUserTable = catConf.getUserTableName();
+		try {
+			ConnectionBroker connBroker = new ConnectionBroker(); // get connection via connectionBroker
+			ManagedConnection mc = connBroker.returnConnection("");
+			con = mc.getJdbcConnection();
+			Statement stmt = con.createStatement();
+			String sql = "SELECT res.docuuid, title, username, updatedate, xml FROM "
+					+ sTable + " res, " + sUserTable + " us, " + sDataTable
+					+ " data WHERE res.approvalstatus='approved' AND res.id=data.id AND res.owner=us.userid ORDER BY updatedate DESC LIMIT "
+					+ count;
+			ResultSet rs = stmt.executeQuery(sql);
+			int pos = 0;
+
+			JSONArray array = new JSONArray();
+			while (rs.next()) {
+				pos++;
+				// create json
+				JSONObject doc = new JSONObject();
+				doc.put("no", pos);
+				doc.put("id", rs.getString("docuuid"));
+				doc.put("title", rs.getString("title"));
+				doc.put("user", rs.getString("username"));
+				doc.put("date", rs.getString("updatedate"));
+				doc.put("abstract", getXmlAbstract(rs.getString("xml")));
+				doc.put("container", getXmlContainer(rs.getString("xml")));
+				doc.put("platform", getXmlPlatform(rs.getString("xml")));
+				array.put(doc);
+			}
+			json = array.toString();
 		} catch (SQLException | JSONException ex) {
-			System.out.println("HttpHelperMethod:"+ex.getMessage());	
-		}		
+			System.out.println("HttpHelperMethod:" + ex.getMessage());
+		} finally {
+			if (con != null)
+				con.close();
+		}
 		return json;
 	}
 	
 	/**
 	 * This method extracts abstract of xml string.
 	 * @param xml
-	 * @return abstract.
+	 * @return abstract
 	 */
 	private static String getXmlAbstract(String xml) {
 		String abstr ="";
@@ -189,19 +256,54 @@ public class HttpHelperMethods {
 	}
 	
 	/**
+	 * This method extracts container of xml string.
+	 * @param xml
+	 * @return container
+	 */
+	private static String getXmlContainer(String xml) {
+		String container ="";
+		try {
+			org.w3c.dom.Document doc = XmlHelpMethods.createDocumentString(xml);
+			NodeList nodes = doc.getElementsByTagName("mcp:containerType"); 
+			container = nodes.item(0).getTextContent();
+		} catch (SAXException | IOException | ParserConfigurationException | NullPointerException  e) {
+			container = "";
+		}
+		return container;
+	}
+	
+	/**
+	 * This method extracts platform of xml string.
+	 * @param xml
+	 * @return platform
+	 */
+	private static String getXmlPlatform(String xml) {
+		String platform ="";
+		try {
+			org.w3c.dom.Document doc = XmlHelpMethods.createDocumentString(xml);
+			platform = doc.getElementsByTagName("mcp:platform").item(0).getAttributes().item(0).getTextContent(); 
+		} catch (SAXException | IOException | ParserConfigurationException | NullPointerException  e) {
+			platform = "";
+		}
+		return platform;
+	}
+	
+	/**
 	 * This method is used to save rating delta (up-down) in db for top-rated-search.
 	 * 
 	 * @param id
+	 * @throws SQLException 
 	 */
-	public static void updateDbRatings(String id, Boolean isID) {
-		//called from asnrequesthandler
-    	String[] temp = id.split(":");
-    	id = temp[temp.length-1];
-    	if(!isID) id = getID(id);
-		//get up/down delta
-    	int delta = getUpRating(id)-getDownRating(id);
-    	//save delta in db
-    	Connection con = null;
+	public static void updateDbRatings(String id, Boolean isID) throws SQLException {
+		// called from asnrequesthandler
+		String[] temp = id.split(":");
+		id = temp[temp.length - 1];
+		if (!isID)
+			id = getID(id);
+		// get up/down delta
+		int delta = getUpRating(id) - getDownRating(id);
+		// save delta in db
+		Connection con = null;
 		CatalogConfiguration catConf = new CatalogConfiguration();
 		String deltaTable = catConf.getTablePrefix() + "RATING";
 		try {
@@ -213,11 +315,16 @@ public class HttpHelperMethods {
 					+ " WHERE docuuid='" + id + "';  INSERT INTO " + deltaTable
 					+ " (docuuid,delta) SELECT '" + id + "'," + delta
 					+ " WHERE NOT EXISTS ( SELECT docuuid FROM " + deltaTable
-					+ " WHERE docuuid = '" + id + "');"; // update if exists otherwise insert new values
+					+ " WHERE docuuid = '" + id + "');"; // update if exists
+															// otherwise insert
+															// new values
 			stmt.executeUpdate(sql);
 		} catch (SQLException ex) {
-			System.out.println(ex.getMessage());	
-		}			
+			System.out.println(ex.getMessage());
+		} finally {
+			if (con != null)
+				con.close();
+		}
 	}
 	
 	/**
@@ -274,8 +381,9 @@ public class HttpHelperMethods {
 	 * This method checks for new rating table.
 	 * 
 	 * @return true, if rating table exists. false, if not.
+	 * @throws SQLException 
 	 */
-	public static boolean checkDb4RatingTable() {
+	public static boolean checkDb4RatingTable() throws SQLException {
 		boolean check = false;
 		Connection con = null;
 		CatalogConfiguration catConf = new CatalogConfiguration();
@@ -292,14 +400,19 @@ public class HttpHelperMethods {
 		    }
 		} catch (SQLException ex) {
 			System.out.println("TABLE CHECK ERROR "+ex.getMessage());	
+		} finally {
+			if (con != null)
+				con.close();
 		}
+		
 		return check;
 	}
 	
 	/**
 	 * This method creates new rating table.
+	 * @throws SQLException 
 	 */
-	public static void createRatingTable() {
+	public static void createRatingTable() throws SQLException {
 		Connection con = null;
 		CatalogConfiguration catConf = new CatalogConfiguration();
 		String deltaTable = catConf.getTablePrefix() + "RATING";
@@ -312,14 +425,18 @@ public class HttpHelperMethods {
 		    stmt.executeUpdate(sql);
 		} catch (SQLException ex) {
 			System.out.println("TABLE CREATION ERROR "+ex.getMessage());	
+		} finally {
+			if (con != null)
+				con.close();
 		}
 	}
 	
 	/**
 	 * This method is used to get all ratings and inserts results in rating table.
 	 * It is only necessary, if table is created for the first time.
+	 * @throws SQLException 
 	 */
-	public static void fillRatingTable() {
+	public static void fillRatingTable() throws SQLException {
 		//get all IDs
 		Connection con = null;
 		ArrayList<String> ids = new ArrayList<String>();
@@ -350,6 +467,9 @@ public class HttpHelperMethods {
 			} 
 		} catch (SQLException ex) {
 			System.out.println("FILL ERROR "+ex.getMessage());	
+		} finally {
+			if (con != null)
+				con.close();
 		}
 
 	}
@@ -359,8 +479,9 @@ public class HttpHelperMethods {
 	 * 
 	 * @param count - number of entries
 	 * @return json string
+	 * @throws SQLException 
 	 */
-	public static String getTopRated (int count) {
+	public static String getTopRated (int count) throws SQLException {
 		String json = "";
 		//sql request
 		Connection con = null;
@@ -394,11 +515,16 @@ public class HttpHelperMethods {
 				doc.put("up", getUpRating(id));
 				doc.put("down", getDownRating(id));
 				doc.put("abstract", getXmlAbstract(rs.getString("xml"))); 
+				doc.put("container", getXmlContainer(rs.getString("xml")));
+		    	doc.put("platform", getXmlPlatform(rs.getString("xml")));
 				array.put(doc);
 			} 
 			json = array.toString(); 
 		} catch (SQLException | JSONException ex) {
 			System.out.println(ex.getMessage());
+		} finally {
+			if (con != null)
+				con.close();
 		}
 		return json;
 	}
@@ -437,8 +563,7 @@ public class HttpHelperMethods {
 		BooleanQuery query2 = new BooleanQuery();
 		// Query sub = new WildcardQuery(new
 		// Term(AsnConstants.FIELD_RDF_SUBJECT,"*"));
-		Query pred = new TermQuery(new Term(AsnConstants.FIELD_RDF_PREDICATE,
-				predicate));
+		Query pred = new TermQuery(new Term(AsnConstants.FIELD_RDF_PREDICATE, predicate));
 		Query v = new TermQuery(new Term(valueField, value));
 		// query2.add(sub, BooleanClause.Occur.MUST);
 		query2.add(pred, BooleanClause.Occur.MUST);
@@ -478,6 +603,126 @@ public class HttpHelperMethods {
 			e.printStackTrace();
 		}
 
+	}
+	
+	/**
+	 * gets an array of username and password based on login table - used in SimpleIdentityAdapter for multi user login
+	 * @return
+	 * @throws SQLException 
+	 */
+	public static UsernamePasswordCredentials[] getUserList () throws SQLException {
+		//sql request
+		UsernamePasswordCredentials[] listDBUsers = new UsernamePasswordCredentials[0];;
+		Connection con = null;
+		CatalogConfiguration catConf = new CatalogConfiguration();
+	    String sLoginTable = catConf.getTablePrefix()+"LOGIN";
+		try {
+			ConnectionBroker connBroker = new ConnectionBroker(); // get connection via connectionBroker
+			ManagedConnection mc = connBroker.returnConnection("");
+			con = mc.getJdbcConnection();
+			Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			String sql = "SELECT username, password FROM "+ sLoginTable;
+			ResultSet rs = stmt.executeQuery(sql);
+
+			int rowcount = 0;
+			if (rs.last()) {
+			  rowcount = rs.getRow();
+			  rs.beforeFirst(); 
+			}
+			listDBUsers = new UsernamePasswordCredentials[rowcount];
+			int rowNo= 0;
+			while (rs.next()) {
+				UsernamePasswordCredentials test = new  UsernamePasswordCredentials(rs.getString("username"),rs.getString("password"));
+				listDBUsers[rowNo]=test;
+				rowNo++;
+			} 
+		} catch (SQLException ex) {
+			System.out.println("get username - error - HettpHelperMethods "+ex.getMessage());
+		} finally {
+			if (con != null)
+				con.close();
+		}
+		return listDBUsers;
+	}
+	
+	/**
+	 * creates login table for multi user login  + creates test user "testuser" with pw "testuser"
+	 * @throws SQLException 
+	 */
+	public static void createLogingTable() throws SQLException {
+		Connection con = null;
+		CatalogConfiguration catConf = new CatalogConfiguration();
+		String loginTable = catConf.getTablePrefix() + "LOGIN";
+		String sql = "CREATE TABLE "+loginTable+" (userid SERIAL,username character varying(64), password character varying(64),CONSTRAINT "+loginTable+"_pk PRIMARY KEY (userid));";
+		try {
+			ConnectionBroker connBroker = new ConnectionBroker();   //get connection via connectionBroker
+		    ManagedConnection mc = connBroker.returnConnection("");
+		    con = mc.getJdbcConnection();
+		    Statement stmt = con.createStatement();
+		    stmt.executeUpdate(sql); 
+		} catch (SQLException ex) {
+			System.out.println("TABLE CREATION ERROR "+ex.getMessage());	
+		} finally {
+			if (con != null)
+				con.close();
+		}
+		//create test user
+		createTestUser();
+	}
+	
+	/**
+	 * creates a test user for login table
+	 * @throws SQLException 
+	 */
+	private static void createTestUser() throws SQLException {
+		//get all IDs
+		Connection con = null;
+		ArrayList<String> ids = new ArrayList<String>();
+		CatalogConfiguration catConf = new CatalogConfiguration();
+		String loginTable = catConf.getTablePrefix()+"LOGIN";
+		try {
+			ConnectionBroker connBroker = new ConnectionBroker();   //get connection via connectionBroker
+		    ManagedConnection mc = connBroker.returnConnection("");
+		    con = mc.getJdbcConnection();
+		    Statement stmt = con.createStatement();
+			String insertSQL =" INSERT INTO "+loginTable+" (username,password) VALUES ('testuser','testuser');";
+			   stmt.executeUpdate(insertSQL);
+		} catch (SQLException ex) {
+			System.out.println("FILL ERROR "+ex.getMessage());	
+		} finally {
+			if (con != null)
+				con.close();
+		}
+
+	}
+
+	/**
+	 * check if login table exists
+	 * @return
+	 * @throws SQLException 
+	 */
+	public static boolean checkDb4LoginTable() throws SQLException {
+		boolean check = false;
+		Connection con = null;
+		CatalogConfiguration catConf = new CatalogConfiguration();
+		String loginTable = catConf.getTablePrefix() + "LOGIN";		
+		try {
+			ConnectionBroker connBroker = new ConnectionBroker();   //get connection via connectionBroker
+		    ManagedConnection mc = connBroker.returnConnection("");
+		    con = mc.getJdbcConnection();
+		    String sql = "SELECT EXISTS(SELECT * FROM information_schema.tables WHERE UPPER (table_name) = UPPER('"+loginTable+"'));";
+		    Statement stmt = con.createStatement();
+		    ResultSet rs = stmt.executeQuery(sql);
+		    while (rs.next()) {
+		    	check = rs.getBoolean(1);
+		    }
+		} catch (SQLException ex) {
+			System.out.println("TABLE CHECK ERROR "+ex.getMessage());	
+		} finally {
+			if (con != null)
+				con.close();
+		}
+		return check;
 	}
 	
 }

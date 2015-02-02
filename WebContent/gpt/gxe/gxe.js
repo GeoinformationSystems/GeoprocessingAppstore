@@ -562,9 +562,6 @@ dojo.declare("gxe.Client",null,{
         setTimeout(function(){
           dialog.hide();
           dialog.destroy();
-          var successMessage = document.getElementById('cmPlMsgsPageMessages');
-  		successMessage.className = "successMessage";
-  		successMessage.innerHTML = "Moving Code Package successfully updated";
         },2000);
         try {
           if (responseObject!=null) {
@@ -574,15 +571,25 @@ dojo.declare("gxe.Client",null,{
               if (jErr.errors!=null && jErr.errors.length>0) {
                 for (var m=0; m<jErr.errors.length; m++) {
                   context.messageArea.addError(jErr.errors[m]);
+                  //catch error
+                  var successMessage = document.getElementById('cmPlMsgsPageMessages');
+            		successMessage.className = "errorMessage";
+            		successMessage.innerHTML = "Moving Code Validation error (see message below)";
                 }
               } else {
                 context.messageArea.addError(jErr.message);
               }
               jErr = null;
+            } else{ //else no errors
+            	 //success
+                var successMessage = document.getElementById('cmPlMsgsPageMessages');
+          		successMessage.className = "successMessage";
+          		successMessage.innerHTML = "Moving Code Package successfully updated";
             }
           }
         } catch (err) {
           // handle eval error
+        	console.log("errors");
         }
         if (typeof(callback) == "function") callback(responseObject,ioArgs);
       })
@@ -1452,6 +1459,7 @@ dojo.declare("gxe.xml.Generator",null,{
    * @returns {String} the serialized string
    */
   generate: function(context,asDraft) {
+	  console.log("mkmk");
     this.context = context;
     this.documentTitle = null;
     this.isValidating = true;
@@ -1476,8 +1484,9 @@ dojo.declare("gxe.xml.Generator",null,{
    * @returns {gxe.control.InputBase} inputControl the input control for the target node
    */
   handleValidationError: function(sMessage,xmlNode,inputControl) {
+	  console.log("hh");
     var bHadErrors = false;
-    if (!this.isSaveAsDraft) {
+    if (!this.isSaveAsDraft || this.isSaveAsDraft == "false") {
       this.hadValidationErrors = true;
       this.context.messageArea.addValidationError(sMessage,xmlNode,inputControl);
     } else {
@@ -2121,7 +2130,7 @@ dojo.declare("gxe.xml.XmlAttribute",gxe.xml.XmlNode,{
   /** Override gxe.xml.XmlNode.echo() */
   echo: function(xmlGenerator,stringBuffer,nDepth) {
     if (this.isPlaceHolder || this.isOptionalPlaceHolder) return;
-    
+    console.log("Echo");
     var bSerialize = true;
     var bValidating = xmlGenerator.isValidating;
     var bIsTitle = this.nodeInfo.isDocumentTitle;

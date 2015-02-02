@@ -157,6 +157,16 @@ function mddOnSectionClicked(sSectionId) {
   }
 }
 
+function executeClick (){
+	var regexS = "[\\?&]" + "uuid" + "=([^&#]*)";
+	var regex = new RegExp( regexS );
+	var id = regex.exec( window.location.href );
+	var contextPath =  "${pageContext.request.contextPath}";
+	var executePage= contextPath+"/catalog/wps-js/run.html?uuid=";
+	window.location.href=executePage+id[1];
+
+}
+
 </script>
 
 <%//TODO: Replace back to search with property %>
@@ -181,6 +191,9 @@ function mddOnSectionClicked(sSectionId) {
 	<c:out value="${valueID}">no id</c:out>
     <input type="hidden" name="hidden1" value="${valueID}" />
     <h:commandButton value="download package" action="#{SearchController.downloadFile}" />
+    <input type="button" 
+   onclick="executeClick(); return false;" 
+   value="execute package" />
 </h:form>
 
 

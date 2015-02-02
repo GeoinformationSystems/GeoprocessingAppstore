@@ -21,7 +21,8 @@ import com.esri.gpt.catalog.context.CatalogConfiguration;
 public class McpPublish { 
 	
 	MovingCodePackage mcp;
-	String path, uuid, publisherID;
+	String path, uuid;
+	int publisherID;
 	Boolean published = false, check = true;
 	CatalogConfiguration catConf;
 	
@@ -36,7 +37,7 @@ public class McpPublish {
 		this.path = path;
 		this.uuid = "{" + uuid + "}"; // = folder name of package - can be used to reconstruct download link
 		catConf = new CatalogConfiguration();
-		publisherID = "1"; // TODO:get real publisher for upload form (context) -  UploadMetadataController.selectablePublishers.selectedKey
+		publisherID = 1; // TODO:get real publisher for upload form (context) -  UploadMetadataController.selectablePublishers.selectedKey
 	}
 	/**
 	 * recommended Constructor / publisher information via context
@@ -54,8 +55,7 @@ public class McpPublish {
 		this.path = path;
 		this.uuid = "{" + uuid + "}"; // = folder name of package - can be used to reconstruct download link
 		catConf = new CatalogConfiguration();
-		Publisher publisher = new Publisher(context);
-		publisherID = publisher.getKey();
+		publisherID= context.getUser().getLocalID();
 	}
 	
 	/**
@@ -77,7 +77,7 @@ public class McpPublish {
 	 * @throws SQLException 
 	 * @throws ImsServiceException 
 	 */
-	public boolean publish() throws SQLException, ImsServiceException{
+	public boolean publish() throws SQLException, ImsServiceException {
 		//TODO: integration of validation - maybe not necessary since validation is done via schema comparison
 		//if (mcp==null || path ==null) return false;
 		//if (check) if (!mcp.isValid()) {
@@ -137,6 +137,7 @@ public class McpPublish {
 		// long id = doesRecordExist(sTable, sUuid); //TODO id isnt package id
 		// for now - has to be changed to real package ID
 		try {
+			
 			ConnectionBroker connBroker = new ConnectionBroker(); // get connection via connectionBroker
 			ManagedConnection mc = connBroker.returnConnection("");
 			con = mc.getJdbcConnection();
@@ -158,7 +159,7 @@ public class McpPublish {
 			int n = 1;
 			st.setString(n++, sUuid);
 			st.setString(n++, sName);
-			st.setInt(n++, 1); // TODO: context needed for publisher ID UploadMetadataController.selectablePublishers.selectedKey
+			st.setInt(n++, publisherID); // TODO: context needed for publisher ID UploadMetadataController.selectablePublishers.selectedKey
 			st.setString(n++, "editor"); // enables permission to edit
 			nRows = st.executeUpdate();
 			st.close(); // close statement
@@ -182,7 +183,7 @@ public class McpPublish {
 			st.setLong(2, id);
 			st.setString(3, sXml);
 			st.executeUpdate();
-			con.commit();
+			con.commit(); 
 		} catch (SQLException ex) {
 			if (con != null) {
 				con.rollback();
@@ -193,7 +194,9 @@ public class McpPublish {
 			st.close(); 
 			if (con != null) {
 				con.setAutoCommit(autoCommit);
+				con.close(); 
 			}
+			
 		}
 		published = true; 
 		return nRows;

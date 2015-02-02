@@ -65,7 +65,7 @@
   
   <managed-bean>
     <managed-bean-name>Splitter</managed-bean-name>
-    <managed-bean-class>de.tudresden.gis.mcp2geoportal.Splitter</managed-bean-class> 
+    <managed-bean-class>de.tudresden.gis.search.Splitter</managed-bean-class> 
     <managed-bean-scope>request</managed-bean-scope>
   </managed-bean> 
   
@@ -752,7 +752,15 @@
       <redirect/>
     </navigation-case>
   </navigation-rule>
-      
+  
+  <!-- geooperator facet browse pages -->
+  <navigation-rule>
+ 	<navigation-case>
+      <from-outcome>catalog.geooperators</from-outcome>
+      <to-view-id>/catalog/knowledge/geooperators.jsp</to-view-id>
+      <redirect/>
+    </navigation-case>
+    </navigation-rule>  
   <!-- resource page -->
   <navigation-rule>
     <navigation-case>

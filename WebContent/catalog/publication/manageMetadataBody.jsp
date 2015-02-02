@@ -165,7 +165,7 @@ function mmdOnActionButtonClicked() {
 }
 
 <% // on action changed %>
-function mmdOnActionChanged(elSelect) {
+function mmdOnActionChanged(elSelect) { 
   if (elSelect != null) {
 
     var sOpt = elSelect.options[elSelect.selectedIndex].value;
@@ -353,7 +353,7 @@ function mmdOnActionIconClicked(sAction,sUuid,sPublicationMethod) {
 }
 
 <% // on load %>
-function mmdOnLoad() {
+function mmdOnLoad() { 
   var elForm = mmdFindForm();
   if (elForm != null) {
     mmdCollectUuids(elForm);
@@ -364,6 +364,8 @@ function mmdOnLoad() {
     var elSelect = document.getElementById(elForm.id+":mmdActionAdmin");
     if(elSelect == null) elSelect = document.getElementById(elForm.id+":mmdAction");
     mmdOnActionChanged(elSelect);
+     
+    
   }
 }
 
@@ -392,7 +394,7 @@ function mmdToggleCheckBoxes(elCheckBox) {
 }
 
 <% // onclick of metadata access policy %>
-function mmdOnSetAccessPolicy(action, currentPolicy){
+function mmdOnSetAccessPolicy(action, currentPolicy){ 
 	var elForm = mmdFindForm();
 	var elSelect = document.getElementById(elForm.id+":mmdActionAdmin");
 	if(elSelect == null) elSelect = document.getElementById(elForm.id+":mmdAction");
@@ -408,12 +410,12 @@ function mmdOnSetAccessPolicy(action, currentPolicy){
 }
 
 <% // sets current policies check boxes %>
-function setCurrentMetadataAccessPolicy(elAclGroups, currentPolicy){
+function setCurrentMetadataAccessPolicy(elAclGroups, currentPolicy){ 
 	var groups = document.getElementsByName(elAclGroups);
 	var policies = currentPolicy.split("\u2715");
-
+ 
 	// clear check boxes
-	for (var idx=0;idx<groups.length;idx++) {
+	for (var idx=0;idx<groups.length;idx++) { 
 			groups[idx].checked = false;
 	}
 
@@ -811,28 +813,34 @@ function mmdClearAclSelection(){
       title="#{gptMsg['catalog.publication.manageMetadata.action.download.tip']}"
       url="/catalog/images/mmd_download.gif"
       onclick="mmdOnActionIconClicked('download','#{record.uuid}');"/>
+      
     <h:graphicImage rendered="#{record.canEdit and record.protocol eq null}"
 	    alt="#{gptMsg['catalog.publication.manageMetadata.action.edit.tip']}"
 	    title="#{gptMsg['catalog.publication.manageMetadata.action.edit.tip']}"
 	    url="/catalog/images/mmd_edit.gif"
 	    onclick="mmdOnActionIconClicked('edit','#{record.uuid}','#{record.publicationMethod}');"/>
+	    
     <h:graphicImage rendered="#{record.canEdit and record.protocol ne null}"
 	    alt="#{gptMsg['catalog.publication.manageMetadata.action.register.tip']}"
 	    title="#{gptMsg['catalog.publication.manageMetadata.action.register.tip']}"
 	    url="/catalog/images/mr_edit.gif"
 	    onclick="mmdOnActionIconClicked('register','#{record.uuid}');"/>
+	    
     <h:graphicImage rendered="#{not record.canEdit and record.protocol eq null}"
       alt="#{gptMsg['catalog.publication.manageMetadata.action.edit.tip']}"
       title="#{gptMsg['catalog.publication.manageMetadata.action.edit.tip']}"
       url="/catalog/images/mmd_edit_off.gif"/>
+      
     <h:graphicImage rendered="#{not record.canEdit and record.protocol ne null}"
       alt="#{gptMsg['catalog.publication.manageMetadata.action.register.tip']}"
       title="#{gptMsg['catalog.publication.manageMetadata.action.register.tip']}"
       url="/catalog/images/mmd_edit_off.gif"/>
-    <h:graphicImage
+      
+    <h:graphicImage rendered="#{record.canEdit and record.protocol eq null}"
       alt="#{gptMsg['catalog.publication.manageMetadata.action.delete.tip']}"
       title="#{gptMsg['catalog.publication.manageMetadata.action.delete.tip']}"
       url="/catalog/images/mmd_delete.gif"
+      
       onclick="mmdOnActionIconClicked('delete','#{record.uuid}');"/>
     <h:graphicImage rendered="#{record.protocol ne null and ((record.approvalStatus=='approved' or record.approvalStatus=='reviewed') and record.synchronizable) and (record.recentJobStatus eq null or record.recentJobStatus=='Unavailable' or record.recentJobStatus=='Completed') and not record.executingLocally}"
       alt="#{gptMsg['catalog.harvest.manage.action.harvest.sync.tip']}"

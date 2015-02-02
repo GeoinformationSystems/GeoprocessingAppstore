@@ -28,6 +28,7 @@ import com.esri.gpt.catalog.management.MmdEnums;
 import com.esri.gpt.catalog.management.MmdResult;
 import com.esri.gpt.catalog.publication.PublicationRecord;
 import com.esri.gpt.catalog.publication.PublicationRequest;
+import com.esri.gpt.catalog.publication.ValidationRequest;
 import com.esri.gpt.catalog.schema.MetadataDocument;
 import com.esri.gpt.catalog.schema.SchemaException;
 import com.esri.gpt.catalog.schema.ValidationException;
@@ -44,6 +45,7 @@ import com.esri.gpt.framework.jsf.FacesContextBroker;
 import com.esri.gpt.framework.jsf.MessageBroker;
 import com.esri.gpt.framework.security.credentials.Credentials;
 import com.esri.gpt.framework.security.credentials.CredentialsDeniedException;
+import com.esri.gpt.framework.security.identity.IdentityException;
 import com.esri.gpt.framework.security.identity.NotAuthorizedException;
 import com.esri.gpt.framework.security.principal.Publisher;
 import com.esri.gpt.framework.util.EnumerationAdapter;
@@ -56,6 +58,7 @@ import de.tudresden.gis.manage.xml.Constant;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -81,6 +84,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.Cookie;
@@ -363,6 +367,10 @@ public class ManageDocumentServlet extends BaseServlet {
     	  this.executeGetList(request,response,context);
     	  return;
       }
+      if (method.equals("GET") && request.getParameter("download")!=null) {
+    	  this.executeGetPackage(request,response,context);
+    	  return;
+      }
           
       /// estabish the publisher
       StringAttributeMap params = context.getCatalogConfiguration().getParameters();
@@ -471,10 +479,10 @@ public class ManageDocumentServlet extends BaseServlet {
       } else if (sMsg.contains("The document is owned by another user:")) {
         response.sendError(HttpServletResponse.SC_FORBIDDEN,"The document is owned by another user.");
       } else {
-        String sErr = "Exception occured while processing servlet request.";
-        getLogger().log(Level.SEVERE,sErr,t);
-        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-            sMsg + sErr);
+        //String sErr = "Exception occured while processing servlet request.";
+        //getLogger().log(Level.SEVERE,sErr,t);
+        //response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
+        //    sMsg + sErr);
       }
     } finally {
       if (context != null) context.onExecutionPhaseCompleted();
@@ -549,10 +557,13 @@ public class ManageDocumentServlet extends BaseServlet {
     HrRecord record = extractRegistrationInfo(request);    
     //get multipart request for xml creating + upload
     try{
-    	if (request.getParts().size()>0) createAndUpload(request, response, context, publisher);
+    	//create mode - xml and zip are sended via parts 
+    	if (request.getParts().size()>0){ createAndUpload(request, response, context, publisher);
     	return;
+    	}
     } catch (Exception e){
     }
+    //else normal - edit mode (no parts, no zip file - only xml change)
     if (record==null) {
       try {
         xml = this.readInputCharacters(request); 
@@ -588,15 +599,16 @@ public class ManageDocumentServlet extends BaseServlet {
           if (!pubRecord.getWasDocumentReplaced()) {
             response.setStatus(HttpServletResponse.SC_CREATED);
           }
-//        } catch (ValidationException e) {
-//          String sMsg = e.toString();
-//          if (sMsg.contains("XSD violation.")) {
-//            throw new ServletException("409: XSD violation.");
-//          } else if (sMsg.contains("Invalid metadata document.")) {
-//            throw new ServletException("409: Document failed to validate.");
-//          } else {
-//            throw new ServletException("409: Document failed to validate.");
-//          }
+          //Validation error triggert via pubRequest.publish /ValidationRequest
+        } catch (ValidationException e) {
+          String sMsg = e.toString();
+          if (sMsg.contains("XSD violation.")) {
+            throw new ServletException("409: XSD violation.");
+          } else if (sMsg.contains("Invalid metadata document.")) {
+            throw new ServletException("409: Document failed to validate.");
+          } else {
+            throw new ServletException("409: Document failed to validate.");
+          }
         } catch (SchemaException e) {
           String sMsg = e.toString();
           if (sMsg.contains("Unrecognized metadata schema.")) {
@@ -757,7 +769,7 @@ public class ManageDocumentServlet extends BaseServlet {
   }
   
   private void createAndUpload(HttpServletRequest request, HttpServletResponse response,
-      RequestContext context, Publisher publisher) throws IOException, IllegalStateException, ServletException, SchemaException, CatalogIndexException, ImsServiceException, SQLException{
+      RequestContext context, Publisher publisher) throws IOException, IllegalStateException, ServletException, SchemaException, CatalogIndexException, ImsServiceException, SQLException, NotAuthorizedException, IdentityException{
 	  
 	  	//XML
 		InputStream xmlStream =  request.getPart("xml").getInputStream();
@@ -777,6 +789,17 @@ public class ManageDocumentServlet extends BaseServlet {
 			System.out.println(array[f].getName() + " " + array[f].getSize());
 		}*/
 				
+		//verify - throw servlet exception
+		ValidationRequest vRequest = new ValidationRequest(context, "id", xml);
+		// in case of schema problems verify method would throw exception
+		try{
+			vRequest.verify();
+		}catch(ValidationException e){
+			System.out.println("valid error: "+e);
+			throw new ServletException("409: Document failed to validate.");
+		}
+		
+		
 		//Save Zip file
 		String webDataPath = Constant.UPLOAD_FOLDER,
 		folder =id;
@@ -811,7 +834,7 @@ public class ManageDocumentServlet extends BaseServlet {
 	        //pubRecord.setPublicationMethod("editor");
 	        //pubRequest.publish();
 			MovingCodePackage mvp = new MovingCodePackage(new File(webDataPath + File.separator + folder + File.separator + Constant.XML_OUTPUT_ZIP_NAME));
-			McpPublish mcpP = new McpPublish(mvp, webDataPath + File.separator + folder + File.separator + Constant.XML_OUTPUT_ZIP_NAME, id );
+			McpPublish mcpP = new McpPublish(mvp, webDataPath + File.separator + folder + File.separator + Constant.XML_OUTPUT_ZIP_NAME, id, context );
 			if(mcpP.publish(false))System.out.println("publishing successfully");
 		}
 		
@@ -841,7 +864,43 @@ public class ManageDocumentServlet extends BaseServlet {
 		out.print(json);
 		out.flush();
 	}
+	if (list.contains("id:")){
+		String json = HttpHelperMethods.getEntryWithID(list.replace("id:", ""));
+		response.setContentType("application/json");
+		PrintWriter out = response.getWriter();
+		out.print(json);
+		out.flush();
+	}
 	
   }
+  
+  private void executeGetPackage(HttpServletRequest request, HttpServletResponse response,
+	      RequestContext context) throws Exception {
+	    
+		String id = request.getParameter("download");
+		String value = UuidUtil.removeCurlies(id);
+		String path = Constant.UPLOAD_FOLDER + File.separator + value + File.separator + Constant.XML_OUTPUT_ZIP_NAME;
+		File file = new File(path);
+		InputStream fis = new FileInputStream(file);
+		
+		//HttpServletResponse response =
+		//	      (HttpServletResponse) FacesContext.getCurrentInstance()
+		//	     .getExternalContext().getResponse();
+		response.setContentType("application/zip");
+		response.setHeader("Content-Disposition", "attachment;filename=package.zip");
+		OutputStream responseOutput = response.getOutputStream();
+	   
+		byte[] buf = new byte[2048];
+		int bytesRead;
+		while ((bytesRead = fis.read(buf)) > 0) {
+			responseOutput.write(buf, 0, bytesRead);
+		}
+		responseOutput.flush();
+		fis.close();
+		responseOutput.close();
+		FacesContext.getCurrentInstance().responseComplete();
+		
+	  }
+  
   
 }

@@ -1,0 +1,1210 @@
+{
+    "items" :      [
+        {
+            "label" :             "Raster_-_functionality_class",
+            "type" :              "Concept",
+            "uri" :               "http://purl.org/net/jbrauner/geooperators#Raster_-_functionality_class",
+            "inScheme" :          [
+                "GeooperatorCategories",
+                "LegacyGISPerspective"
+            ],
+            "broaderTransitive" : "Functionality_classes",
+            "prefLabel" :         "Raster - functionality class"
+        },
+        {
+            "label" : "title",
+            "type" :  "Property",
+            "uri" :   "http://purl.org/dc/elements/1.1/title"
+        },
+        {
+            "label" : "license",
+            "type" :  "Property",
+            "uri" :   "http://purl.org/dc/elements/1.1/license"
+        },
+        {
+            "label" :             "Overlay",
+            "type" :              "Concept",
+            "uri" :               "http://purl.org/net/jbrauner/geooperators#Overlay",
+            "inScheme" :          [
+                "GeooperatorCategories",
+                "GeoinformaticsPerspective"
+            ],
+            "broaderTransitive" : "Geoinformatics",
+            "prefLabel" :         "Overlay"
+        },
+        {
+            "label" :             "Keywords",
+            "type" :              "Concept",
+            "uri" :               "http://purl.org/net/jbrauner/geooperators#Keywords",
+            "inScheme" :          [
+                "AbstractGeooperatorCategories",
+                "GeooperatorCategories",
+                "LegacyGISPerspective"
+            ],
+            "broaderTransitive" : "GRASS",
+            "prefLabel" :         "Keywords"
+        },
+        {
+            "label" :             "OGC_Web_Processing_Service",
+            "type" :              "Concept",
+            "uri" :               "http://purl.org/net/jbrauner/geooperators#OGC_Web_Processing_Service",
+            "inScheme" :          [
+                "GeooperatorCategories",
+                "TechnicalPerspective"
+            ],
+            "broaderTransitive" : "Available_online",
+            "prefLabel" :         "OGC Web Processing Service"
+        },
+        {
+            "label" :             "Geoprocessing_patterns",
+            "type" :              "Concept",
+            "uri" :               "http://purl.org/net/jbrauner/geooperators#Geoprocessing_patterns",
+            "inScheme" :          [
+                "AbstractGeooperatorCategories",
+                "GeooperatorCategories",
+                "PragmaticPerspective"
+            ],
+            "broaderTransitive" : "Pragmatic",
+            "prefLabel" :         "Geoprocessing patterns"
+        },
+        {
+            "label" :         "GeodataPerspective",
+            "type" :          "ConceptScheme",
+            "uri" :           "http://purl.org/net/jbrauner/geooperators#GeodataPerspective",
+            "hasTopConcept" : "Geodata",
+            "prefLabel" :     "Geodata perspective"
+        },
+        {
+            "label" :             "Raster_to_raster",
+            "type" :              "Concept",
+            "uri" :               "http://purl.org/net/jbrauner/geooperators#Raster_to_raster",
+            "inScheme" :          [
+                "GeooperatorCategories",
+                "GeodataPerspective"
+            ],
+            "broaderTransitive" : "Raster",
+            "related" :           "Raster_-_functionality_class",
+            "prefLabel" :         "Raster to raster"
+        },
+        {
+            "label" :             "Available_in_operating_system",
+            "type" :              "Concept",
+            "uri" :               "http://purl.org/net/jbrauner/geooperators#Available_in_operating_system",
+            "inScheme" :          [
+                "GeooperatorCategories",
+                "TechnicalPerspective"
+            ],
+            "broaderTransitive" : "Technical",
+            "prefLabel" :         "Available in operating system"
+        },
+        {
+            "label" :             "Map_Algebra_toolset",
+            "type" :              "Concept",
+            "uri" :               "http://purl.org/net/jbrauner/geooperators#Map_Algebra_toolset",
+            "inScheme" :          [
+                "GeooperatorCategories",
+                "LegacyGISPerspective"
+            ],
+            "broaderTransitive" : "Spatial_analyst_toolbox",
+            "prefLabel" :         "Map Algebra toolset"
+        },
+        {
+            "label" :             "abstract",
+            "type" :              "Concept",
+            "uri" :               "http://purl.org/net/jbrauner/geooperators#abstract",
+            "inScheme" :          [
+                "GeooperatorCategories",
+                "LegacyGISPerspective"
+            ],
+            "broaderTransitive" : "Legacy_GIS",
+            "prefLabel" :         "abstract"
+        },
+        {
+            "label" :     "GRASS_keywords",
+            "type" :      "Collection",
+            "uri" :       "http://purl.org/net/jbrauner/geooperators#GRASS_keywords",
+            "prefLabel" : "GRASS keywords",
+            "member" :    [
+                "Algebra_-_keywords",
+                "Raster_-_keywords"
+            ]
+        },
+        {
+            "geoinformaticsCategories" : [
+                "Geoinformatics",
+                "Overlay",
+                "Egenhofer_operators"
+            ],
+            "inScheme" :                 [
+                "GRASSGIS",
+                "Geooperators"
+            ],
+            "broadMatch" :               "Clip",
+            "uri" :                      "http://purl.org/net/jbrauner/geooperators#v.select",
+            "definition" :               "http://grass.osgeo.org/grass71/manuals/v.select.html",
+            "relatedGeooperators" :      "Clip",
+            "pragmaticCategories" :      [
+                "Pragmatic",
+                "Modeling_suitability_and_movement_and_interaction",
+                "Transport_route_planning",
+                "Modeling_paths"
+            ],
+            "prefLabel" :                "v.select",
+            "type" :                     "Concept",
+            "scopeNote" :                "Selects features from vector map (A) by features from other vector map (B).",
+            "geodataCategories" :        [
+                "Geodata",
+                "Vector_to_vector",
+                "Vector"
+            ],
+            "label" :                    "v.select",
+            "relatedMatch" :             [
+                "Vector",
+                "Available_online",
+                "OGC_Web_Processing_Service",
+                "Egenhofer_operators",
+                "Vector_to_vector",
+                "Geoinformatics",
+                "Vector_-_functionality_class",
+                "Available_in_operating_system",
+                "Legacy_GIS",
+                "GRASS",
+                "Transport_route_planning",
+                "Modeling_paths",
+                "Formal",
+                "Pragmatic",
+                "Modeling_suitability_and_movement_and_interaction",
+                "Technical",
+                "Windows",
+                "Linux",
+                "Binary",
+                "Overlay",
+                "Geodata"
+            ],
+            "legacyGISCategories" :      [
+                "Vector_-_functionality_class",
+                "Legacy_GIS",
+                "GRASS"
+            ],
+            "formalCategories" :         [
+                "Binary",
+                "Formal"
+            ],
+            "technicalCategories" :      [
+                "Available_in_operating_system",
+                "Linux",
+                "Available_online",
+                "Windows",
+                "OGC_Web_Processing_Service",
+                "Technical"
+            ]
+        },
+        {
+            "label" : "date",
+            "type" :  "Property",
+            "uri" :   "http://purl.org/dc/elements/1.1/date"
+        },
+        {
+            "label" :     "EsriArcGIS",
+            "type" :      "ConceptScheme",
+            "uri" :       "http://purl.org/net/jbrauner/geooperators#EsriArcGIS",
+            "prefLabel" : "Esri ArcGIS"
+        },
+        {
+            "range" : "http://www.w3.org/2008/05/skos#Concept",
+            "label" : "formalCategories",
+            "type" :  "ObjectProperty",
+            "uri" :   "http://purl.org/net/jbrauner/geooperators#formalCategories"
+        },
+        {
+            "label" :         "GeoinformaticsPerspective",
+            "type" :          "ConceptScheme",
+            "uri" :           "http://purl.org/net/jbrauner/geooperators#GeoinformaticsPerspective",
+            "hasTopConcept" : "Geoinformatics",
+            "prefLabel" :     "Geoinformatics perspective"
+        },
+        {
+            "label" : "description",
+            "type" :  "Property",
+            "uri" :   "http://purl.org/dc/elements/1.1/description"
+        },
+        {
+            "geoinformaticsCategories" : [
+                "Geoinformatics",
+                "Map_Algebra",
+                "LocalFUNCTION_operations"
+            ],
+            "inScheme" :                 [
+                "EsriArcGIS",
+                "Geooperators"
+            ],
+            "broadMatch" :               "LocalDifference",
+            "uri" :                      "http://purl.org/net/jbrauner/geooperators#Raster_calculator",
+            "definition" :               "http://resources.arcgis.com/en/help/main/10.2/index.html#//009z000000z7000000",
+            "closeMatch" :               "r.mapcalc",
+            "relatedGeooperators" :      [
+                "r.mapcalc",
+                "LocalDifference"
+            ],
+            "pragmaticCategories" :      [
+                "Pragmatic",
+                "Modeling_paths",
+                "Transport_route_planning",
+                "Modeling_suitability_and_movement_and_interaction"
+            ],
+            "prefLabel" :                "Raster calculator",
+            "type" :                     "Concept",
+            "scopeNote" :                "Builds and executes a single Map Algebra expression using Python syntax in a calculator-like interface.",
+            "geodataCategories" :        [
+                "Raster",
+                "Geodata",
+                "Raster_to_raster"
+            ],
+            "label" :                    "Raster_calculator",
+            "relatedMatch" :             [
+                "Geoinformatics",
+                "Pragmatic",
+                "Map_Algebra",
+                "Spatial_analyst_toolbox",
+                "LocalFUNCTION_operations",
+                "Transport_route_planning",
+                "ArcGIS",
+                "Windows",
+                "Raster_to_raster",
+                "Legacy_GIS",
+                "Geodata",
+                "Modeling_suitability_and_movement_and_interaction",
+                "Available_in_operating_system",
+                "Raster",
+                "Map_Algebra_toolset",
+                "Modeling_paths",
+                "Technical"
+            ],
+            "legacyGISCategories" :      [
+                "ArcGIS",
+                "Spatial_analyst_toolbox",
+                "Map_Algebra_toolset"
+            ],
+            "formalCategories" :         [
+                "n-ary",
+                "Formal"
+            ],
+            "technicalCategories" :      [
+                "Windows",
+                "Technical"
+            ]
+        },
+        {
+            "label" :     "AbstractGeooperatorCategories",
+            "type" :      "ConceptScheme",
+            "uri" :       "http://purl.org/net/jbrauner/geooperators#AbstractGeooperatorCategories",
+            "prefLabel" : "Abstract geooperator category"
+        },
+        {
+            "topConceptOf" : [
+                "GeooperatorCategories",
+                "LegacyGISPerspective"
+            ],
+            "label" :        "Legacy_GIS",
+            "type" :         "Concept",
+            "uri" :          "http://purl.org/net/jbrauner/geooperators#Legacy_GIS",
+            "inScheme" :     [
+                "GeooperatorCategories",
+                "LegacyGISPerspective"
+            ],
+            "prefLabel" :    "Legacy GIS"
+        },
+        {
+            "label" : "format",
+            "type" :  "Property",
+            "uri" :   "http://purl.org/dc/elements/1.1/format"
+        },
+        {
+            "label" :     "GRASS_functionality_classes",
+            "type" :      "Collection",
+            "uri" :       "http://purl.org/net/jbrauner/geooperators#GRASS_functionality_classes",
+            "prefLabel" : "Functionality classes",
+            "member" :    [
+                "Raster_-_functionality_class",
+                "Vector_-_functionality_class"
+            ]
+        },
+        {
+            "label" :             "Extract_toolset",
+            "type" :              "Concept",
+            "uri" :               "http://purl.org/net/jbrauner/geooperators#Extract_toolset",
+            "inScheme" :          [
+                "GeooperatorCategories",
+                "LegacyGISPerspective"
+            ],
+            "broaderTransitive" : "Analysis_toolbox",
+            "prefLabel" :         "Extract toolset"
+        },
+        {
+            "inScheme" :            [
+                "Geooperators",
+                "EsriArcGIS"
+            ],
+            "uri" :                 "http://purl.org/net/jbrauner/geooperators#Clip",
+            "definition" :          "http://resources.arcgis.com/en/help/main/10.2/index.html#/Clip/000800000004000000/",
+            "relatedGeooperators" : [
+                "v.select",
+                "v.overlay"
+            ],
+            "pragmaticCategories" : [
+                "Transport_route_planning",
+                "Modeling_suitability_and_movement_and_interaction",
+                "Pragmatic",
+                "Modeling_paths"
+            ],
+            "prefLabel" :           "Clip",
+            "type" :                "Concept",
+            "scopeNote" :           "Extracts input features that overlay the clip features.",
+            "geodataCategories" :   [
+                "Geodata",
+                "Vector_to_vector",
+                "Vector"
+            ],
+            "label" :               "Clip",
+            "relatedMatch" :        [
+                "Vector_to_vector",
+                "Vector",
+                "Modeling_suitability_and_movement_and_interaction",
+                "Windows",
+                "Available_online",
+                "Available_in_operating_system",
+                "Analysis_toolbox",
+                "Geodata",
+                "ArcGIS_online",
+                "Technical",
+                "Modeling_paths",
+                "Legacy_GIS",
+                "Pragmatic",
+                "ArcGIS",
+                "Transport_route_planning"
+            ],
+            "legacyGISCategories" : [
+                "Extract_toolset",
+                "ArcGIS",
+                "Analysis_toolbox"
+            ],
+            "formalCategories" :    [
+                "Formal",
+                "Binary"
+            ],
+            "technicalCategories" : [
+                "Available_online",
+                "Windows",
+                "Technical",
+                "Available_in_operating_system",
+                "ArcGIS_online"
+            ],
+            "narrowMatch" :         [
+                "v.overlay",
+                "v.select"
+            ]
+        },
+        {
+            "range" : "http://www.w3.org/2008/05/skos#Concept",
+            "label" : "legacyGISCategories",
+            "type" :  "ObjectProperty",
+            "uri" :   "http://purl.org/net/jbrauner/geooperators#legacyGISCategories"
+        },
+        {
+            "topConceptOf" : [
+                "FormalPerspective",
+                "GeooperatorCategories"
+            ],
+            "label" :        "Formal",
+            "type" :         "Concept",
+            "uri" :          "http://purl.org/net/jbrauner/geooperators#Formal",
+            "inScheme" :     [
+                "GeooperatorCategories",
+                "FormalPerspective"
+            ],
+            "prefLabel" :    "Formal"
+        },
+        {
+            "topConceptOf" : [
+                "GeooperatorCategories",
+                "GeoinformaticsPerspective"
+            ],
+            "label" :        "Geoinformatics",
+            "type" :         "Concept",
+            "uri" :          "http://purl.org/net/jbrauner/geooperators#Geoinformatics",
+            "inScheme" :     [
+                "GeooperatorCategories",
+                "GeoinformaticsPerspective"
+            ],
+            "prefLabel" :    "Geoinformatics"
+        },
+        {
+            "label" : "creator",
+            "type" :  "Property",
+            "uri" :   "http://purl.org/dc/terms/creator"
+        },
+        {
+            "label" :             "Vector_to_vector",
+            "type" :              "Concept",
+            "uri" :               "http://purl.org/net/jbrauner/geooperators#Vector_to_vector",
+            "inScheme" :          [
+                "GeooperatorCategories",
+                "GeodataPerspective"
+            ],
+            "broaderTransitive" : "Vector",
+            "prefLabel" :         "Vector to vector"
+        },
+        {
+            "label" :             "Available_online",
+            "type" :              "Concept",
+            "uri" :               "http://purl.org/net/jbrauner/geooperators#Available_online",
+            "inScheme" :          [
+                "GeooperatorCategories",
+                "TechnicalPerspective"
+            ],
+            "broaderTransitive" : "Technical",
+            "prefLabel" :         "Available online"
+        },
+        {
+            "label" :             "Modeling_paths",
+            "type" :              "Concept",
+            "uri" :               "http://purl.org/net/jbrauner/geooperators#Modeling_paths",
+            "inScheme" :          [
+                "GeooperatorCategories",
+                "PragmaticPerspective"
+            ],
+            "broaderTransitive" : "Modeling_suitability_and_movement_and_interaction",
+            "prefLabel" :         "Modeling paths"
+        },
+        {
+            "range" : "http://www.w3.org/2008/05/skos#Concept",
+            "label" : "geodataCategories",
+            "type" :  "ObjectProperty",
+            "uri" :   "http://purl.org/net/jbrauner/geooperators#geodataCategories"
+        },
+        {
+            "label" :         "LegacyGISPerspective",
+            "type" :          "ConceptScheme",
+            "uri" :           "http://purl.org/net/jbrauner/geooperators#LegacyGISPerspective",
+            "hasTopConcept" : "Legacy_GIS",
+            "prefLabel" :     "Legacy GIS perspective"
+        },
+        {
+            "imports" :     "http://www.w3.org/2004/02/skos/core",
+            "seeAlso" :     "http://geoprocessing.geo.tu-dresden.de/index.html",
+            "uri" :         "http://purl.org/net/jbrauner/geooperators",
+            "creator" :     "Johannes Brauner",
+            "date" :        "2015-01-13",
+            "license" :     "http://creativecommons.org/licenses/by-sa/4.0/",
+            "type" :        "Ontology",
+            "label" :       "geooperators",
+            "title" :       "Geooperator thesaurus",
+            "description" : "SKOS representation of a geooperator thesaurus started during the PhD thesis (\"Geoprocessing in Spatial Data Infrastructures - formalizations for geooperators\") of Johannes Brauner."
+        },
+        {
+            "label" :             "Transport_route_planning",
+            "type" :              "Concept",
+            "uri" :               "http://purl.org/net/jbrauner/geooperators#Transport_route_planning",
+            "inScheme" :          [
+                "GeooperatorCategories",
+                "PragmaticPerspective"
+            ],
+            "broaderTransitive" : "Geoprocessing_patterns",
+            "prefLabel" :         "Transport route planning"
+        },
+        {
+            "label" :             "Vector_-_functionality_class",
+            "type" :              "Concept",
+            "uri" :               "http://purl.org/net/jbrauner/geooperators#Vector_-_functionality_class",
+            "inScheme" :          [
+                "GeooperatorCategories",
+                "LegacyGISPerspective"
+            ],
+            "broaderTransitive" : "Functionality_classes",
+            "prefLabel" :         "Vector - functionality class"
+        },
+        {
+            "label" :         "PragmaticPerspective",
+            "type" :          "ConceptScheme",
+            "uri" :           "http://purl.org/net/jbrauner/geooperators#PragmaticPerspective",
+            "hasTopConcept" : "Pragmatic",
+            "prefLabel" :     "Pragmatic perspective"
+        },
+        {
+            "label" :             "Analysis_toolbox",
+            "type" :              "Concept",
+            "uri" :               "http://purl.org/net/jbrauner/geooperators#Analysis_toolbox",
+            "inScheme" :          [
+                "GeooperatorCategories",
+                "LegacyGISPerspective"
+            ],
+            "broaderTransitive" : "Toolboxes",
+            "prefLabel" :         "Analysis toolbox"
+        },
+        {
+            "label" :             "Binary",
+            "type" :              "Concept",
+            "uri" :               "http://purl.org/net/jbrauner/geooperators#Binary",
+            "inScheme" :          [
+                "FormalPerspective",
+                "GeooperatorCategories"
+            ],
+            "broaderTransitive" : "Arity",
+            "prefLabel" :         "Binary"
+        },
+        {
+            "geoinformaticsCategories" : [
+                "Overlay",
+                "Egenhofer_operators",
+                "Geoinformatics"
+            ],
+            "inScheme" :                 [
+                "GRASSGIS",
+                "Geooperators"
+            ],
+            "broadMatch" :               "Clip",
+            "uri" :                      "http://purl.org/net/jbrauner/geooperators#v.overlay",
+            "definition" :               "http://grass.osgeo.org/grass71/manuals/v.overlay.html",
+            "relatedGeooperators" :      "Clip",
+            "pragmaticCategories" :      [
+                "Pragmatic",
+                "Transport_route_planning",
+                "Modeling_suitability_and_movement_and_interaction",
+                "Modeling_paths"
+            ],
+            "prefLabel" :                "v.overlay",
+            "type" :                     "Concept",
+            "scopeNote" :                "Overlays two vector maps.",
+            "geodataCategories" :        [
+                "Geodata",
+                "Vector",
+                "Vector_to_vector"
+            ],
+            "label" :                    "v.overlay",
+            "relatedMatch" :             [
+                "OGC_Web_Processing_Service",
+                "Pragmatic",
+                "Egenhofer_operators",
+                "Vector_to_vector",
+                "Geoinformatics",
+                "Modeling_paths",
+                "Linux",
+                "Formal",
+                "Geodata",
+                "Transport_route_planning",
+                "Binary",
+                "Available_online",
+                "Vector",
+                "Available_in_operating_system",
+                "Legacy_GIS",
+                "GRASS",
+                "Overlay",
+                "Vector_-_functionality_class",
+                "Technical",
+                "Windows",
+                "Modeling_suitability_and_movement_and_interaction"
+            ],
+            "legacyGISCategories" :      [
+                "Legacy_GIS",
+                "Vector_-_functionality_class",
+                "GRASS"
+            ],
+            "formalCategories" :         [
+                "Binary",
+                "Formal"
+            ],
+            "technicalCategories" :      [
+                "Available_online",
+                "Linux",
+                "Windows",
+                "Technical",
+                "OGC_Web_Processing_Service",
+                "Available_in_operating_system"
+            ]
+        },
+        {
+            "label" :             "GRASS",
+            "type" :              "Concept",
+            "uri" :               "http://purl.org/net/jbrauner/geooperators#GRASS",
+            "inScheme" :          [
+                "GeooperatorCategories",
+                "LegacyGISPerspective"
+            ],
+            "broaderTransitive" : "Legacy_GIS",
+            "prefLabel" :         "GRASS"
+        },
+        {
+            "topConceptOf" : [
+                "GeooperatorCategories",
+                "PragmaticPerspective"
+            ],
+            "label" :        "Pragmatic",
+            "type" :         "Concept",
+            "uri" :          "http://purl.org/net/jbrauner/geooperators#Pragmatic",
+            "inScheme" :     [
+                "GeooperatorCategories",
+                "PragmaticPerspective"
+            ],
+            "prefLabel" :    "Pragmatic"
+        },
+        {
+            "label" :     "GRASSGIS",
+            "type" :      "ConceptScheme",
+            "uri" :       "http://purl.org/net/jbrauner/geooperators#GRASSGIS",
+            "prefLabel" : "GRASS GIS"
+        },
+        {
+            "topConceptOf" : [
+                "GeooperatorCategories",
+                "GeodataPerspective"
+            ],
+            "label" :        "Geodata",
+            "type" :         "Concept",
+            "uri" :          "http://purl.org/net/jbrauner/geooperators#Geodata",
+            "inScheme" :     [
+                "GeooperatorCategories",
+                "GeodataPerspective"
+            ],
+            "prefLabel" :    "Geodata"
+        },
+        {
+            "geoinformaticsCategories" : [
+                "LocalFUNCTION_operations",
+                "Geoinformatics",
+                "Map_Algebra"
+            ],
+            "inScheme" :                 [
+                "Geooperators",
+                "GRASSGIS"
+            ],
+            "broadMatch" :               "LocalDifference",
+            "uri" :                      "http://purl.org/net/jbrauner/geooperators#r.mapcalc",
+            "definition" :               "http://grass.osgeo.org/grass71/manuals/r.mapcalc.html",
+            "closeMatch" :               "Raster_calculator",
+            "relatedGeooperators" :      [
+                "Raster_calculator",
+                "LocalDifference"
+            ],
+            "pragmaticCategories" :      [
+                "Modeling_suitability_and_movement_and_interaction",
+                "Pragmatic",
+                "Transport_route_planning",
+                "Modeling_paths"
+            ],
+            "prefLabel" :                "r.mapcalc",
+            "type" :                     "Concept",
+            "scopeNote" :                "Raster map calculator.",
+            "geodataCategories" :        [
+                "Raster",
+                "Raster_to_raster",
+                "Geodata"
+            ],
+            "label" :                    "r.mapcalc",
+            "relatedMatch" :             [
+                "Windows",
+                "Modeling_paths",
+                "Linux",
+                "Geodata",
+                "OGC_Web_Processing_Service",
+                "Map_Algebra",
+                "Geoinformatics",
+                "n-ary",
+                "Modeling_suitability_and_movement_and_interaction",
+                "Legacy_GIS",
+                "Available_in_operating_system",
+                "LocalFUNCTION_operations",
+                "GRASS",
+                "Raster",
+                "Raster_to_raster",
+                "Transport_route_planning",
+                "Raster_-_functionality_class",
+                "Technical",
+                "Raster_-_keywords",
+                "Formal",
+                "Available_online",
+                "Pragmatic"
+            ],
+            "legacyGISCategories" :      [
+                "GRASS",
+                "Legacy_GIS",
+                "Raster_-_functionality_class",
+                "Algebra_-_keywords",
+                "Raster_-_keywords"
+            ],
+            "formalCategories" :         [
+                "n-ary",
+                "Formal"
+            ],
+            "technicalCategories" :      [
+                "Windows",
+                "OGC_Web_Processing_Service",
+                "Technical",
+                "Linux"
+            ]
+        },
+        {
+            "label" :             "Arity",
+            "type" :              "Concept",
+            "uri" :               "http://purl.org/net/jbrauner/geooperators#Arity",
+            "broaderTransitive" : "Formal",
+            "inScheme" :          [
+                "FormalPerspective",
+                "GeooperatorCategories",
+                "AbstractGeooperatorCategories"
+            ],
+            "prefLabel" :         "Arity"
+        },
+        {
+            "label" :             "Functionality_classes",
+            "type" :              "Concept",
+            "uri" :               "http://purl.org/net/jbrauner/geooperators#Functionality_classes",
+            "inScheme" :          [
+                "AbstractGeooperatorCategories",
+                "GeooperatorCategories",
+                "LegacyGISPerspective"
+            ],
+            "broaderTransitive" : "GRASS",
+            "prefLabel" :         "Functionality classes"
+        },
+        {
+            "label" :             "Vector",
+            "type" :              "Concept",
+            "uri" :               "http://purl.org/net/jbrauner/geooperators#Vector",
+            "inScheme" :          [
+                "GeooperatorCategories",
+                "GeodataPerspective"
+            ],
+            "broaderTransitive" : "Geodata",
+            "prefLabel" :         "Vector"
+        },
+        {
+            "label" :         "GeooperatorCategories",
+            "type" :          "ConceptScheme",
+            "uri" :           "http://purl.org/net/jbrauner/geooperators#GeooperatorCategories",
+            "hasTopConcept" : [
+                "Formal",
+                "Pragmatic",
+                "Geoinformatics",
+                "Technical",
+                "Legacy_GIS",
+                "Geodata"
+            ],
+            "prefLabel" :     "Geooperator category"
+        },
+        {
+            "label" :         "TechnicalPerspective",
+            "type" :          "ConceptScheme",
+            "uri" :           "http://purl.org/net/jbrauner/geooperators#TechnicalPerspective",
+            "hasTopConcept" : "Technical",
+            "prefLabel" :     "Technical perspective"
+        },
+        {
+            "label" :         "FormalPerspective",
+            "type" :          "ConceptScheme",
+            "uri" :           "http://purl.org/net/jbrauner/geooperators#FormalPerspective",
+            "hasTopConcept" : "Formal",
+            "prefLabel" :     "Formal perspective"
+        },
+        {
+            "label" :             "Windows",
+            "type" :              "Concept",
+            "uri" :               "http://purl.org/net/jbrauner/geooperators#Windows",
+            "inScheme" :          [
+                "GeooperatorCategories",
+                "TechnicalPerspective"
+            ],
+            "broaderTransitive" : "Available_in_operating_system",
+            "prefLabel" :         "Windows"
+        },
+        {
+            "label" :             "ArcGIS_online",
+            "type" :              "Concept",
+            "uri" :               "http://purl.org/net/jbrauner/geooperators#ArcGIS_online",
+            "inScheme" :          [
+                "GeooperatorCategories",
+                "TechnicalPerspective"
+            ],
+            "broaderTransitive" : "Available_online",
+            "prefLabel" :         "ArcGIS online"
+        },
+        {
+            "label" :             "n-ary",
+            "type" :              "Concept",
+            "uri" :               "http://purl.org/net/jbrauner/geooperators#n-ary",
+            "inScheme" :          [
+                "FormalPerspective",
+                "GeooperatorCategories"
+            ],
+            "broaderTransitive" : "Arity",
+            "prefLabel" :         "n-ary"
+        },
+        {
+            "label" :     "AbstractGeooperators",
+            "type" :      "ConceptScheme",
+            "uri" :       "http://purl.org/net/jbrauner/geooperators#AbstractGeooperators",
+            "prefLabel" : "Abstract geooperators"
+        },
+        {
+            "range" : "http://www.w3.org/2008/05/skos#Concept",
+            "label" : "pragmaticCategories",
+            "type" :  "ObjectProperty",
+            "uri" :   "http://purl.org/net/jbrauner/geooperators#pragmaticCategories"
+        },
+        {
+            "label" :             "Algebra_-_keywords",
+            "type" :              "Concept",
+            "uri" :               "http://purl.org/net/jbrauner/geooperators#Algebra_-_keywords",
+            "inScheme" :          [
+                "GeooperatorCategories",
+                "LegacyGISPerspective"
+            ],
+            "broaderTransitive" : "Keywords",
+            "prefLabel" :         "Algebra - keywords"
+        },
+        {
+            "label" :             "ArcGIS",
+            "type" :              "Concept",
+            "uri" :               "http://purl.org/net/jbrauner/geooperators#ArcGIS",
+            "inScheme" :          [
+                "GeooperatorCategories",
+                "LegacyGISPerspective"
+            ],
+            "broaderTransitive" : "Legacy_GIS",
+            "prefLabel" :         "ArcGIS"
+        },
+        {
+            "label" :             "Raster",
+            "type" :              "Concept",
+            "uri" :               "http://purl.org/net/jbrauner/geooperators#Raster",
+            "inScheme" :          [
+                "GeooperatorCategories",
+                "GeodataPerspective"
+            ],
+            "broaderTransitive" : "Geodata",
+            "prefLabel" :         "Raster"
+        },
+        {
+            "topConceptOf" : [
+                "GeooperatorCategories",
+                "TechnicalPerspective"
+            ],
+            "label" :        "Technical",
+            "type" :         "Concept",
+            "uri" :          "http://purl.org/net/jbrauner/geooperators#Technical",
+            "inScheme" :     [
+                "GeooperatorCategories",
+                "TechnicalPerspective"
+            ],
+            "prefLabel" :    "Technical"
+        },
+        {
+            "label" :             "Map_Algebra",
+            "type" :              "Concept",
+            "uri" :               "http://purl.org/net/jbrauner/geooperators#Map_Algebra",
+            "inScheme" :          [
+                "GeooperatorCategories",
+                "GeoinformaticsPerspective"
+            ],
+            "broaderTransitive" : "Geoinformatics",
+            "prefLabel" :         "Map Algebra"
+        },
+        {
+            "label" : "creator",
+            "type" :  "Property",
+            "uri" :   "http://purl.org/dc/elements/1.1/creator",
+            "id" :    "creator_0"
+        },
+        {
+            "range" : "http://www.w3.org/2008/05/skos#Concept",
+            "label" : "technicalCategories",
+            "type" :  "ObjectProperty",
+            "uri" :   "http://purl.org/net/jbrauner/geooperators#technicalCategories"
+        },
+        {
+            "label" :             "Linux",
+            "type" :              "Concept",
+            "uri" :               "http://purl.org/net/jbrauner/geooperators#Linux",
+            "inScheme" :          [
+                "GeooperatorCategories",
+                "TechnicalPerspective"
+            ],
+            "broaderTransitive" : "Available_in_operating_system",
+            "prefLabel" :         "Linux"
+        },
+        {
+            "label" :     "Geooperators",
+            "type" :      "ConceptScheme",
+            "uri" :       "http://purl.org/net/jbrauner/geooperators#Geooperators",
+            "prefLabel" : "Geooperators"
+        },
+        {
+            "range" : "http://www.w3.org/2008/05/skos#Concept",
+            "label" : "geoinformaticsCategories",
+            "type" :  "ObjectProperty",
+            "uri" :   "http://purl.org/net/jbrauner/geooperators#geoinformaticsCategories"
+        },
+        {
+            "range" : "http://www.w3.org/2008/05/skos#Concept",
+            "label" : "relatedGeooperators",
+            "type" :  "ObjectProperty",
+            "uri" :   "http://purl.org/net/jbrauner/geooperators#relatedGeooperators"
+        },
+        {
+            "label" :             "Toolboxes",
+            "type" :              "Concept",
+            "uri" :               "http://purl.org/net/jbrauner/geooperators#Toolboxes",
+            "inScheme" :          [
+                "AbstractGeooperatorCategories",
+                "GeooperatorCategories",
+                "LegacyGISPerspective"
+            ],
+            "broaderTransitive" : "ArcGIS",
+            "prefLabel" :         "Toolboxes"
+        },
+        {
+            "geoinformaticsCategories" : [
+                "Geoinformatics",
+                "Map_Algebra",
+                "LocalFUNCTION_operations"
+            ],
+            "inScheme" :                 [
+                "AbstractGeooperators",
+                "Geooperators"
+            ],
+            "uri" :                      "http://purl.org/net/jbrauner/geooperators#LocalDifference",
+            "definition" :               "Tomlin, C. D. (1990). Geographic information systems and cartographic modeling. Englewood Cliffs, New Jersey: Prentice-Hall.",
+            "relatedGeooperators" :      [
+                "Raster_calculator",
+                "r.mapcalc"
+            ],
+            "prefLabel" :                "LocalDifference",
+            "type" :                     "Concept",
+            "scopeNote" :                "Abstract geooperator implementing the Map Algebra LocalDifference function.",
+            "geodataCategories" :        [
+                "Raster_to_raster",
+                "Raster",
+                "Geodata"
+            ],
+            "label" :                    "LocalDifference",
+            "relatedMatch" :             [
+                "Geoinformatics",
+                "Raster_to_raster",
+                "Formal",
+                "Map_Algebra",
+                "Geodata",
+                "Binary",
+                "Legacy_GIS",
+                "LocalFUNCTION_operations",
+                "Raster"
+            ],
+            "legacyGISCategories" :      [
+                "Legacy_GIS",
+                "abstract"
+            ],
+            "formalCategories" :         [
+                "Formal",
+                "Binary"
+            ],
+            "narrowMatch" :              [
+                "Raster_calculator",
+                "r.mapcalc"
+            ]
+        },
+        {
+            "label" :             "Modeling_suitability_and_movement_and_interaction",
+            "type" :              "Concept",
+            "uri" :               "http://purl.org/net/jbrauner/geooperators#Modeling_suitability_and_movement_and_interaction",
+            "inScheme" :          [
+                "GeooperatorCategories",
+                "PragmaticPerspective"
+            ],
+            "broaderTransitive" : "Pragmatic",
+            "prefLabel" :         "Modeling suitability, movement, and interaction"
+        },
+        {
+            "label" :             "Raster_-_keywords",
+            "type" :              "Concept",
+            "uri" :               "http://purl.org/net/jbrauner/geooperators#Raster_-_keywords",
+            "inScheme" :          [
+                "GeooperatorCategories",
+                "LegacyGISPerspective"
+            ],
+            "broaderTransitive" : "Keywords",
+            "prefLabel" :         "Raster - keywords"
+        },
+        {
+            "label" :             "Spatial_analyst_toolbox",
+            "type" :              "Concept",
+            "uri" :               "http://purl.org/net/jbrauner/geooperators#Spatial_analyst_toolbox",
+            "inScheme" :          [
+                "GeooperatorCategories",
+                "LegacyGISPerspective"
+            ],
+            "broaderTransitive" : "Toolboxes",
+            "prefLabel" :         "Spatial analyst toolbox"
+        },
+        {
+            "label" :     "ArcGIS_toolboxes",
+            "type" :      "Collection",
+            "uri" :       "http://purl.org/net/jbrauner/geooperators#ArcGIS_toolboxes",
+            "prefLabel" : "Arc GIS toolboxes",
+            "member" :    [
+                "Analysis_toolbox",
+                "Spatial_analyst_toolbox"
+            ]
+        },
+        {
+            "label" :             "LocalFUNCTION_operations",
+            "type" :              "Concept",
+            "uri" :               "http://purl.org/net/jbrauner/geooperators#LocalFUNCTION_operations",
+            "inScheme" :          [
+                "GeooperatorCategories",
+                "GeoinformaticsPerspective"
+            ],
+            "broaderTransitive" : "Map_Algebra",
+            "prefLabel" :         "LocalFUNCTION operations"
+        },
+        {
+            "label" :             "Egenhofer_operators",
+            "type" :              "Concept",
+            "uri" :               "http://purl.org/net/jbrauner/geooperators#Egenhofer_operators",
+            "inScheme" :          [
+                "GeooperatorCategories",
+                "GeoinformaticsPerspective"
+            ],
+            "broaderTransitive" : "Geoinformatics",
+            "prefLabel" :         "Egenhofer operators"
+        }
+    ],
+    "types" :      {
+        "Concept" :        {
+            "uri" : "http://www.w3.org/2004/02/skos/core#Concept"
+        },
+        "Collection" :     {
+            "uri" : "http://www.w3.org/2004/02/skos/core#Collection"
+        },
+        "ObjectProperty" : {
+            "uri" : "http://www.w3.org/2002/07/owl#ObjectProperty"
+        },
+        "Ontology" :       {
+            "uri" : "http://www.w3.org/2002/07/owl#Ontology"
+        },
+        "Property" :       {
+            "uri" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+        },
+        "ConceptScheme" :  {
+            "uri" : "http://www.w3.org/2004/02/skos/core#ConceptScheme"
+        },
+        "Geooperator": {
+            "pluralLabel": "Geooperators"
+        }
+    },
+    "properties" : {
+        "topConceptOf" :             {
+            "uri" :       "http://www.w3.org/2004/02/skos/core#topConceptOf",
+            "valueType" : "item"
+        },
+        "relatedMatch" :             {
+            "uri" :       "http://www.w3.org/2004/02/skos/core#relatedMatch",
+            "valueType" : "item"
+        },
+        "member" :                   {
+            "uri" :       "http://www.w3.org/2004/02/skos/core#member",
+            "valueType" : "item"
+        },
+        "technicalCategories" :      {
+            "uri" :       "http://purl.org/net/jbrauner/geooperators#technicalCategories",
+            "valueType" : "item"
+        },
+        "definition" :               {
+            "uri" :       "http://www.w3.org/2004/02/skos/core#definition",
+            "valueType" : "url"
+        },
+        "relatedGeooperators" :      {
+            "uri" :       "http://purl.org/net/jbrauner/geooperators#relatedGeooperators",
+            "valueType" : "item"
+        },
+        "hasTopConcept" :            {
+            "uri" :       "http://www.w3.org/2004/02/skos/core#hasTopConcept",
+            "valueType" : "item"
+        },
+        "inScheme" :                 {
+            "uri" :       "http://www.w3.org/2004/02/skos/core#inScheme",
+            "valueType" : "item"
+        },
+        "license" :                  {
+            "uri" :       "http://purl.org/dc/elements/1.1/license",
+            "valueType" : "item"
+        },
+        "prefLabel" :                {
+            "uri" : "http://www.w3.org/2004/02/skos/core#prefLabel"
+        },
+        "creator" :                  {
+            "uri" : "http://purl.org/dc/elements/1.1/creator"
+        },
+        "pragmaticCategories" :      {
+            "uri" :       "http://purl.org/net/jbrauner/geooperators#pragmaticCategories",
+            "valueType" : "item"
+        },
+        "scopeNote" :                {
+            "uri" : "http://www.w3.org/2004/02/skos/core#scopeNote"
+        },
+        "range" :                    {
+            "uri" :       "http://www.w3.org/2000/01/rdf-schema#range",
+            "valueType" : "item"
+        },
+        "narrowMatch" :              {
+            "uri" :       "http://www.w3.org/2004/02/skos/core#narrowMatch",
+            "valueType" : "item"
+        },
+        "geoinformaticsCategories" : {
+            "uri" :       "http://purl.org/net/jbrauner/geooperators#geoinformaticsCategories",
+            "valueType" : "item"
+        },
+        "legacyGISCategories" :      {
+            "uri" :       "http://purl.org/net/jbrauner/geooperators#legacyGISCategories",
+            "valueType" : "item"
+        },
+        "broaderTransitive" :        {
+            "uri" :       "http://www.w3.org/2004/02/skos/core#broaderTransitive",
+            "valueType" : "item"
+        },
+        "description" :              {
+            "uri" : "http://purl.org/dc/elements/1.1/description"
+        },
+        "formalCategories" :         {
+            "uri" :       "http://purl.org/net/jbrauner/geooperators#formalCategories",
+            "valueType" : "item"
+        },
+        "imports" :                  {
+            "uri" :       "http://www.w3.org/2002/07/owl#imports",
+            "valueType" : "item"
+        },
+        "date" :                     {
+            "uri" : "http://purl.org/dc/elements/1.1/date"
+        },
+        "closeMatch" :               {
+            "uri" :       "http://www.w3.org/2004/02/skos/core#closeMatch",
+            "valueType" : "item"
+        },
+        "geodataCategories" :        {
+            "uri" :       "http://purl.org/net/jbrauner/geooperators#geodataCategories",
+            "valueType" : "item"
+        },
+        "broadMatch" :               {
+            "uri" :       "http://www.w3.org/2004/02/skos/core#broadMatch",
+            "valueType" : "item"
+        },
+        "seeAlso" :                  {
+            "uri" :       "http://www.w3.org/2000/01/rdf-schema#seeAlso",
+            "valueType" : "item"
+        },
+        "title" :                    {
+            "uri" : "http://purl.org/dc/elements/1.1/title"
+        },
+        "related" :                  {
+            "uri" :       "http://www.w3.org/2004/02/skos/core#related",
+            "valueType" : "item"
+        }
+    }
+}

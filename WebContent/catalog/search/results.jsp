@@ -49,23 +49,12 @@
 
 <script type="text/javascript">
 
-function myfunction() {
-	
-	console.log("hallo");
-	return "hallo";
-	
-}
-
 /**
 Expands all the records
 
 @param oCheckbox True or false if records have been clicked.
 **/
-function rsExpandAllRecords(oCheckbox) {
-	//console.log("<xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-	//console.log(jsMetadata.records);
-	//console.log("<xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-	
+function rsExpandAllRecords(oCheckbox) { 
   rsInsertReviews();
   var bChecked = oCheckbox.checked, aElements = document.getElementsByTagName("span"), el, i;
   if (aElements != null) {
@@ -83,10 +72,7 @@ function rsExpandAllRecords(oCheckbox) {
 On Record clicked, abstract and links are exposed
 @param rowIndex The row index (From 0) that should be exposed
 **/
-function rsExpandRecord(rowIndex) {
-	//console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-	//console.log(jsMetadata.records);
-	//console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+function rsExpandRecord(rowIndex) { 
   var requestIcon = false;;
   var el = document.getElementById("frmSearchCriteria:mdRecords:"+rowIndex+":recContent");
   if(el == null) {

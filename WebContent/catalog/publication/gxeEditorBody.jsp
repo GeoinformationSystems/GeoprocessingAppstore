@@ -118,26 +118,29 @@
     });
   }
 
+  //edit mode
   function gxeSaveDocument(asDraft) {
     var xmlGenerator = new gxe.xml.Generator();
     var sXml = xmlGenerator.generate(gxeContext,asDraft); 
-   // if (!xmlGenerator.hadValidationErrors) {
+    if (!xmlGenerator.hadValidationErrors) {
       var gxeClient = new gxe.Client();
       gxeClient.saveDocument(gxeContext,null,sXml,asDraft);
-  //  }
+    }
   }
   
   function xmlAndUplaod(){
 	  var id = gxeContext.openDocumentId; //if id exists -> change mode
-	  if (id != null) {
-		  gxeSaveDocument("false"); 
+	  if (id != null) { //redirect- edit mode because id is known
+		  gxeSaveDocument(false); 
 		  return;
 	  }
+	  //create mode
 										//else create mode  	  
 	  id = gxeContext.newDocumentId;  //TODO: real Package ID or created id for saving?
 	  var xmlGenerator = new gxe.xml.Generator();
 	  var sXml = xmlGenerator.generate(gxeContext,"false");
-	  if (!xmlGenerator.hadValidationErrors) {		  
+	  if (!xmlGenerator.hadValidationErrors) {		
+		  console.log("valid");
 	  //var blob = new Blob([file], { type: "application/zip"} );
 	  var form = new FormData();
 	  var fileInput = document.getElementById ("file");
@@ -176,10 +179,24 @@
 	          var successMessage = document.getElementById('cmPlMsgsPageMessages');
 	    		successMessage.className = "successMessage";
 	    		successMessage.innerHTML = "Moving Code Package successfully created";
+	       //error handling
+	       } else if(request.status==409) {
+	    	   var successMessage = document.getElementById('cmPlMsgsPageMessages');
+	    		successMessage.className = "errorMessage";
+	    		successMessage.innerHTML = "Validation Error";
+	    	   
+	       }
+	       else{
+	    	   var successMessage = document.getElementById('cmPlMsgsPageMessages');
+	    		successMessage.className = "errorMessage";
+	    		successMessage.innerHTML = "unknown XML Error";
+	    	   
 	       }
 	    }; 
       dialog.hide();
       dialog.destroy();
+	  }else{
+		  console.log("valid errors");
 	  }
 	  
   }

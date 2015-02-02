@@ -1,6 +1,7 @@
 package de.tudresden.gis.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,13 +40,27 @@ public class StartController implements ServletContextListener {
 	public void contextInitialized(ServletContextEvent arg0) {
 		// server start code
 		// check if rating table exists - if it does not exist, fill it
-		if (!HttpHelperMethods.checkDb4RatingTable()) {
-			System.out.println("StartController: rating table does not exists - will be created and filled");
-			// false -> create rating table
-			HttpHelperMethods.createRatingTable();
-			// fill rating table
-			HttpHelperMethods.fillRatingTable();
-		}
+		try {
+			if (!HttpHelperMethods.checkDb4RatingTable()) {
+				System.out.println("StartController: rating table does not exists - will be created and filled");
+				// false -> create rating table
+				HttpHelperMethods.createRatingTable();
+				// fill rating table
+				HttpHelperMethods.fillRatingTable();
+			}
+		
+			//check if login table exists and create test user "testuser"- pw "testuser"
+			if(!HttpHelperMethods.checkDb4LoginTable()){
+				HttpHelperMethods.createLogingTable();
+				System.out.println("StartController: login table does not exists - will be created and filled");
+				System.out.println("try created test user with 'testuser'/'testuser'");
+			}
+			
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		
 		// change entries for dropdown: keywords, platform and container
 		int seconds = 30; // change this, if the server reloads more than twice
 							// - not used if reloadable is false in server.xml

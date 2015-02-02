@@ -36,7 +36,14 @@
         styleClass="#{PageContext.tabStyleMap['catalog.browse']}"
         value="#{gptMsg['catalog.browse.menuCaption']}"
         rendered="#{PageContext.tocsByKey['browseCatalog']}" />
- 
+        
+ <h:commandLink 
+        id="geooperators"
+        action="catalog.geooperators" 
+        styleClass="#{PageContext.tabStyleMap['catalog.geooperators']}"
+        value="Browse geooperators"
+        rendered="#{PageContext.tocsByKey['browseCatalog']}" />       
+  
   <h:commandLink 
         id="publicationManageMetadata"
         action="catalog.publication.manageMetadata" 

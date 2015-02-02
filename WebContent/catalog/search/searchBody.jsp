@@ -675,6 +675,12 @@ function uncheckForm() {
 </f:verbatim>
 
 <% // layout the page %>
+
+<!-- 
+<iframe src="../../../GcService/" width="836" height="460" name="facetted search" marginheight="0" marginwidth="0" frameborder="0">
+</iframe> -->
+
+
 <h:form id="frmSearchCriteria" 
   
   onkeypress="javascript:return scSubmitForm(event, this);" 

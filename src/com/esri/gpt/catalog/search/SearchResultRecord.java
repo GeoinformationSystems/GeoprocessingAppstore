@@ -31,7 +31,7 @@ public class SearchResultRecord extends Record {
   /** class variables ========================================================= */
   
   /** The maximum length of the abstract * */
-  public final static int ABSTRACT_MAXLENGTH = 255;
+  public final static int ABSTRACT_MAXLENGTH = 512;
   
   /**
    * Prefix where content type is appended to to come up with the readable content type title

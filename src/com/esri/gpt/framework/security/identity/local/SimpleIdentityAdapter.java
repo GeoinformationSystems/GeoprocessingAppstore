@@ -30,7 +30,10 @@ import com.esri.gpt.framework.security.principal.Roles;
 import com.esri.gpt.framework.security.principal.User;
 import com.esri.gpt.framework.security.principal.Users;
 
+import de.tudresden.gis.manage.http.HttpHelperMethods;
+
 import java.sql.SQLException;
+
 import javax.naming.NamingException;
 
 /**
@@ -114,6 +117,9 @@ public void authenticate(User user)
   
   // authenticate
   Credentials credentials = user.getCredentials();
+  String name = getUsername();
+  String dn = getDN();
+  
   if (credentials != null) {
     if (credentials instanceof UsernamePasswordCredentials) {
       UsernamePasswordCredentials upCreds = (UsernamePasswordCredentials)credentials;
@@ -132,11 +138,61 @@ public void authenticate(User user)
     }
   }
   
+  //check db for users
+  if (credentials != null) {
+	  if (!bAuthenticated){
+		  
+		  //db data
+		  UsernamePasswordCredentials[] listDBUsers = HttpHelperMethods.getUserList();
+		  
+		    if (credentials instanceof UsernamePasswordCredentials) {
+		    	UsernamePasswordCredentials upCreds = (UsernamePasswordCredentials)credentials;
+		    		  for (UsernamePasswordCredentials dbCred: listDBUsers){
+		    			  bAuthenticated = 
+		    					  (upCreds.getUsername().length() > 0) &&
+		    		              (upCreds.getPassword().length() > 0) &&
+		    		              dbCred.getUsername().equalsIgnoreCase(upCreds.getUsername()) && 
+		    		              dbCred.getPassword().equals(upCreds.getPassword());
+		    			  if(bAuthenticated){
+		    				  name = dbCred.getUsername();
+		    				  dn = dbCred.getUsername();
+		    				  break;
+		    			  }
+		    		  }
+	  		} else if (credentials instanceof DistinguishedNameCredential) {
+	  			DistinguishedNameCredential dnCred = (DistinguishedNameCredential)credentials;
+				  for (UsernamePasswordCredentials dbCred: listDBUsers){
+					  bAuthenticated = 
+							  (dbCred.getUsername().length() > 0) &&
+		                      dnCred.getDistinguishedName().equalsIgnoreCase(dbCred.getUsername());
+					  if(bAuthenticated){
+						  name = dbCred.getUsername();
+						  dn = dbCred.getUsername();
+						  System.out.println("DB User");
+						  break;
+					  }
+				  }
+	  		} else if (credentials instanceof UsernameCredential) {
+	  			UsernameCredential unCred = (UsernameCredential)credentials;
+				  for (UsernamePasswordCredentials dbCred: listDBUsers){
+					  bAuthenticated = (dbCred.getUsername().length() > 0) &&
+	  	                       unCred.getUsername().equalsIgnoreCase(dbCred.getUsername());
+					  if(bAuthenticated){
+						  name = dbCred.getUsername();
+						  dn = dbCred.getUsername();
+						  System.out.println("DB User");
+						  break;
+					  }
+				  }
+	  		} 
+	  }
+  }
+
   // setup the authenticated user
   if (bAuthenticated) {
-    user.setDistinguishedName(getDN());
+    user.setDistinguishedName(dn); //getDN()
     user.setKey(user.getDistinguishedName());
-    user.setName(getUsername());
+    user.setName(name); //getUsername()
     user.getProfile().setUsername(user.getName());
     user.getAuthenticationStatus().setWasAuthenticated(true);
     

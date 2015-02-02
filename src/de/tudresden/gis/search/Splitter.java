@@ -1,13 +1,22 @@
 package de.tudresden.gis.search;
 
+import java.io.File;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
 /**
- * This class provides functionality to split a text into abstract, platform and container type to use separately in the search result.
+ * This class provides functionality to split a text into abstract, platform and container type to use separately 
+ * in the search result.
  * 
  * @author Jochen Lenz
  *
  */
 public class Splitter {
- 
+
 	/**
 	 * This method extracts and returns the abstract. 
 	 * @see CSW_2.0.2_OGCCORE_ESRI_GPT_GetRecords_Response.xslt
@@ -25,107 +34,170 @@ public class Splitter {
 	}
 
 	/**
+	 * This Methods returns the value of an xml element with defined tag name from a group of elements.
+	 * 
+	 * @param tag defines the tag name of the element 
+	 * @param element is an xml element with possibly some child nodes
+	 * @return value of xml element with definded tag name
+	 */
+    private static String getValue(String tag, Element element) {
+        NodeList nodes = element.getElementsByTagName(tag).item(0).getChildNodes();
+        Node node = (Node) nodes.item(0);
+        return node.getNodeValue();
+    }
+	
+	/**
 	 * This method extracts and returns the container type.
-	 * Returns the text between the two defined 'split-words'. 
+	 * Returns string from gpt.search.browse.containers.xml or text between the two defined 'split-words'. 
 	 * @see gpt.search.profiles CSW_2.0.2_OGCCORE_ESRI_GPT_GetRecords_Response.xslt
 	 * 
 	 * @param abstractText consists of abstract, container type, platform information and two 'split-words'
-	 * @param icon boolean, defines type of returned text. Set to true returns icon url, if false returns icon description  
-	 * @return url to icon or icon description. If container type is empty returns "not defined".
-	 * 		   If container type is not in the list returns "unknown containertype.".
+	 * @param get_icon_url boolean, defines type of returned text. Set to true returns icon url, if false returns 
+	 * 		   icon description  
+	 * @return url for icon or container type. If container type is empty returns "not defined".
+	 * 		   If container type is not in containers.xml returns "unknown".
 	 */
-	public String getContainertype(String abstractText, boolean icon) { 
+	public String getContainertype(String abstractText, boolean get_icon_url) { 
 		abstractText = abstractText.replaceAll("\\s+", "");		
-		String result; 
+        String result = "empty";
 		String[] parts = abstractText.split("Thecontainertypeofthedescribedprocessis");
 		String[] parts2 = parts[1].split("Theplatformofthedescribedprocessis"); 
 		if (parts2.length < 1) {
-			if (icon)
-				return "/catalog/images/mcp/icons/containertype/notDefined.png";				
+			if (get_icon_url)
+				result = "/catalog/images/mcp/icons/notDefined_small.png";				
 			else 
-				return "not defined"; 		
+				result = "not defined"; 		
 		} else {
 			// Returns "not defined" if first part of second split is empty.
 			if (parts2[0].length() == 0) {
-				if (icon) {
-					return "/catalog/images/mcp/icons/containertype/notDefined.png";
+				if (get_icon_url) {
+					result = "/catalog/images/mcp/icons/notDefined_small.png";
 				} else {
-					return "not defined";
+					result = "not defined";
 				}
 			// If first part of second split is not empty, compares it with different types and returns type.
 			// If no type matches, "unknown containertype." is returned.
 			} else {
-				switch (parts2[0]) {
-					case "http://gis.geo.tu-dresden.de/movingcode/containerregistry/python-2.7":
-						if (icon) result = "/catalog/images/mcp/icons/containertype/python-2.7/favicon.png";
-						else result = "Python 2.7"; 
-						break;
-					case "http://gis.geo.tu-dresden.de/movingcode/containerregistry/python-2.8":
-						if (icon) result = "/catalog/images/mcp/icons/containertype/python-2.8/favicon.png";
-						else result = "Python 2.8"; 
-						break;
-					case "http://gis.geo.tu-dresden.de/movingcode/containerregistry/python-2.9":
-						if (icon) result = "/catalog/images/mcp/icons/containertype/python-2.9/favicon.png";
-						else result = "Python 2.9"; 
-						break;
-					case "http://gis.geo.tu-dresden.de/movingcode/containerregistry/java-jar":
-						if (icon) result = "/catalog/images/mcp/icons/containertype/java-jar/favicon.png";
-						else result = "Java"; 
-						break;				
-					default:
-						if (icon) result = "/catalog/images/mcp/icons/containertype/unknown.png";
-						else result = "unkown container type."; 			
-						break;
+	            try {
+	                String path = Thread.currentThread().getContextClassLoader().getResource("/gpt/search/browse/containers.xml").getPath();
+	                File stocks = new File(path);
+	                DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+	                DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+	                Document doc = dBuilder.parse(stocks);
+	                doc.getDocumentElement().normalize();
+	                
+	                NodeList nodes = doc.getElementsByTagName("item");
+	                for (int i = 0; i < nodes.getLength(); i++) {
+	                    Node node = nodes.item(i);
+	                    if (node.getNodeType() == Node.ELEMENT_NODE) {
+	                        Element element = (Element) node;
+	                        String name = getValue("name", element);
+	                        String name_replaced = name.replaceAll("\\s+","");
+	                        if (name_replaced.equals(parts2[0])) {
+                                result = name;
+	                            break;
+	                        } else {
+	                            result = parts2[0];
+	                        }
+	                    }
+	                }
+	            } catch (Exception ex) {
+	                ex.printStackTrace();
+	                result = "error";
+	            }
+				if (get_icon_url){
+                    if (parts2[0].toLowerCase().contains("java")) {
+                        result = "/catalog/images/mcp/icons/java_small.png";
+                    } else if (parts2[0].toLowerCase().contains("python")) {
+                        result = "/catalog/images/mcp/icons/python_small.png";
+                    } else if(parts2[0].toLowerCase().contains("arc")) {
+                        result = "/catalog/images/mcp/icons/arctoolbox_small.png";
+                    } else if(parts2[0].toLowerCase().contains("rscript")) {
+                        result = "/catalog/images/mcp/icons/r_small.png";
+                    } else {
+                        result = "/catalog/images/mcp/icons/no_picture_small.png";
+                    }
 				}
-				return result;
 			}
 		}
+        if (result == getPlatform(abstractText, true)){
+        	result = "/catalog/images/mcp/icons/clear_small.png";
+        }		
+		return result;
 	}
 
 	
 	/**
 	 * This method extracts and returns the platform.
-	 * Returns the text after the second 'split-word'. 
+	 * Returns string from gpt.search.browse.platforms.xml or text after the second 'split-word'. 
 	 * 
 	 * @see gpt.search.profiles CSW_2.0.2_OGCCORE_ESRI_GPT_GetRecords_Response.xslt
 	 * 
 	 * @param abstractText consists of abstract, container type, platform information and two 'split-words'
 	 * @param icon defines type of returned text. Set to true returns icon url, if false returns icon description  
-	 * @return url to icon or icon description. If platform is empty returns "not defined".
-	 * 		   If platform is not in the list returns "unknown containertype.".
+	 * @return url for icon or platform description. If platform is empty returns "not defined".
+	 * 		   If platform is not in platforms.xml returns "unknown".
 	 */
-	public String getPlatform(String abstractText, boolean icon) { 
-		abstractText = abstractText.replaceAll("\\s+","");		
-		String result; 
-		String[] parts = abstractText.split("Theplatformofthedescribedprocessis");
-		// If there is only one part after split then there is no part with platform value.
-		// Returns "not defined".
-		if (parts.length == 1){
-			if (icon) return "/catalog/images/mcp/icons/platform/notDefined.png";				
-			else return "not defined"; 
-		// If second part exists compares it with different platform and returns platform.
-		// If no platform matches returns "unknown platform".
-		} else {
-			switch (parts[1]) {
-			case "http://gis.geo.tu-dresden.de/movingcode/platformregistry/platform/java-1.6":
-				if (icon) result = "/catalog/images/mcp/icons/platform/java-1.6/favicon.png";
-				else return "Java 1.6"; 
-				break;
-			case "http://gis.geo.tu-dresden.de/movingcode/platformregistry/platform/java-1.7":
-				if (icon) result = "/catalog/images/mcp/icons/platform/java-1.7/favicon.png";
-				else return "Java 1.7"; 
-				break;
-			case "http://gis.geo.tu-dresden.de/movingcode/platformregistry/platform/java-1.8":
-				if (icon) result = "/catalog/images/mcp/icons/platform/java-1.8/favicon.png";
-				else return "Java 1.8"; 
-				break;				
-			default:
-				if (icon) result = "/catalog/images/mcp/icons/platform/unknown.png";
-				else return "unknown platfrom."; 				
-				break;	
-			}
-			return result;
-		}
-	}
-
+    public String getPlatform(String abstractText, boolean get_icon_url) {
+        abstractText = abstractText.replaceAll("\\s+","");        
+        String result = "empty";
+        String[] parts = abstractText.split("Theplatformofthedescribedprocessis");
+        // If there is only one part after split then there is no part with platform value.
+        // Returns "not defined".
+        if (parts.length == 1){
+            if (get_icon_url) {
+                result = "/catalog/images/mcp/icons/notDefined_small.png";
+            } else {
+                result = "not defined";
+            }
+        // If second part exists compares it with different platform and returns platform.
+        // If no platform matches returns "unknown platform".
+        } else {
+            try {
+                String path = Thread.currentThread().getContextClassLoader().getResource("/gpt/search/browse/platforms.xml").getPath();
+                File stocks = new File(path);
+                DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+                Document doc = dBuilder.parse(stocks);
+                doc.getDocumentElement().normalize();
+                
+                NodeList nodes = doc.getElementsByTagName("item");
+                for (int i = 0; i < nodes.getLength(); i++) {
+                    Node node = nodes.item(i);
+                    if (node.getNodeType() == Node.ELEMENT_NODE) {
+                        Element element = (Element) node;
+                        String id = getValue("id", element);
+                        String name = getValue("name", element);
+                        String name_replaced = name.replaceAll("\\s+","");
+                        if (name_replaced.equals(parts[1])) {
+                            result = name;
+                        } else {
+                            result = parts[1];
+                        }
+                    }
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                result = "error";
+            }
+            if (get_icon_url){
+                if (parts[1].toLowerCase().contains("java")) {
+                    result = "/catalog/images/mcp/icons/java_small.png";
+                } else if (parts[1].toLowerCase().contains("python")) {
+                    result = "/catalog/images/mcp/icons/python_small.png";
+                } else if(parts[1].toLowerCase().contains("numpy-")) {
+                    result = "/catalog/images/mcp/icons/platform/numphy_small.png";
+                } else if(parts[1].toLowerCase().contains("arc")) {
+                    result = "/catalog/images/mcp/icons/arcgis_small.png";
+                } else if(parts[1].toLowerCase().contains("gdal")) {
+                    result = "/catalog/images/mcp/icons/gdal_small.png";
+                } else if(parts[1].toLowerCase().contains("gdal-python-")) {
+                    result = "/catalog/images/mcp/icons/platform/gdal_Python_small.png";
+                } else {
+                    result = "/catalog/images/mcp/icons/no_picture_small.png";
+                }
+            }
+        }
+        return result;
+    }
 }

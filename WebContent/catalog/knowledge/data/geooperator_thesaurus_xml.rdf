@@ -1,0 +1,728 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+    xmlns="http://purl.org/net/jbrauner/geooperators#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:dct="http://purl.org/dc/terms/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xml:base="http://purl.org/net/jbrauner/geooperators" > 
+  <rdf:Description rdf:about="#Raster_-_keywords">
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Raster - keywords</skos:prefLabel>
+    <skos:broaderTransitive rdf:resource="#Keywords"/>
+    <skos:inScheme rdf:resource="#LegacyGISPerspective"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#r.mapcalc">
+    <technicalCategories rdf:resource="#Windows"/>
+    <skos:relatedMatch rdf:resource="#Windows"/>
+    <formalCategories rdf:resource="#n-ary"/>
+    <skos:relatedMatch rdf:resource="#Modeling_paths"/>
+    <pragmaticCategories rdf:resource="#Modeling_suitability_and_movement_and_interaction"/>
+    <pragmaticCategories rdf:resource="#Pragmatic"/>
+    <skos:relatedMatch rdf:resource="#Linux"/>
+    <skos:relatedMatch rdf:resource="#Geodata"/>
+    <geodataCategories rdf:resource="#Raster"/>
+    <skos:relatedMatch rdf:resource="#OGC_Web_Processing_Service"/>
+    <legacyGISCategories rdf:resource="#GRASS"/>
+    <geoinformaticsCategories rdf:resource="#LocalFUNCTION_operations"/>
+    <technicalCategories rdf:resource="#OGC_Web_Processing_Service"/>
+    <skos:relatedMatch rdf:resource="#Map_Algebra"/>
+    <skos:relatedMatch rdf:resource="#Geoinformatics"/>
+    <technicalCategories rdf:resource="#Technical"/>
+    <skos:relatedMatch rdf:resource="#n-ary"/>
+    <geoinformaticsCategories rdf:resource="#Geoinformatics"/>
+    <skos:relatedMatch rdf:resource="#Modeling_suitability_and_movement_and_interaction"/>
+    <skos:relatedMatch rdf:resource="#Legacy_GIS"/>
+    <skos:relatedMatch rdf:resource="#Available_in_operating_system"/>
+    <pragmaticCategories rdf:resource="#Transport_route_planning"/>
+    <skos:broadMatch rdf:resource="#LocalDifference"/>
+    <legacyGISCategories rdf:resource="#Legacy_GIS"/>
+    <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://grass.osgeo.org/grass71/manuals/r.mapcalc.html</skos:definition>
+    <skos:closeMatch rdf:resource="#Raster_calculator"/>
+    <skos:inScheme rdf:resource="#Geooperators"/>
+    <skos:relatedMatch rdf:resource="#LocalFUNCTION_operations"/>
+    <skos:relatedMatch rdf:resource="#GRASS"/>
+    <skos:scopeNote rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Raster map calculator.</skos:scopeNote>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">r.mapcalc</skos:prefLabel>
+    <skos:relatedMatch rdf:resource="#Raster"/>
+    <skos:relatedMatch rdf:resource="#Raster_to_raster"/>
+    <formalCategories rdf:resource="#Formal"/>
+    <skos:relatedMatch rdf:resource="#Transport_route_planning"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <geodataCategories rdf:resource="#Raster_to_raster"/>
+    <geoinformaticsCategories rdf:resource="#Map_Algebra"/>
+    <pragmaticCategories rdf:resource="#Modeling_paths"/>
+    <geodataCategories rdf:resource="#Geodata"/>
+    <skos:relatedMatch rdf:resource="#Raster_-_functionality_class"/>
+    <legacyGISCategories rdf:resource="#Raster_-_functionality_class"/>
+    <skos:relatedMatch rdf:resource="#Technical"/>
+    <relatedGeooperators rdf:resource="#Raster_calculator"/>
+    <skos:relatedMatch rdf:resource="#Raster_-_keywords"/>
+    <technicalCategories rdf:resource="#Linux"/>
+    <skos:relatedMatch rdf:resource="#Formal"/>
+    <skos:inScheme rdf:resource="#GRASSGIS"/>
+    <relatedGeooperators rdf:resource="#LocalDifference"/>
+    <legacyGISCategories rdf:resource="#Algebra_-_keywords"/>
+    <legacyGISCategories rdf:resource="#Raster_-_keywords"/>
+    <skos:relatedMatch rdf:resource="#Available_online"/>
+    <skos:relatedMatch rdf:resource="#Pragmatic"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#OGC_Web_Processing_Service">
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">OGC Web Processing Service</skos:prefLabel>
+    <skos:broaderTransitive rdf:resource="#Available_online"/>
+    <skos:inScheme rdf:resource="#TechnicalPerspective"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Geoinformatics">
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:topConceptOf rdf:resource="#GeooperatorCategories"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Geoinformatics</skos:prefLabel>
+    <skos:inScheme rdf:resource="#GeoinformaticsPerspective"/>
+    <skos:topConceptOf rdf:resource="#GeoinformaticsPerspective"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Geooperators">
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Geooperators</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#AbstractGeooperatorCategories">
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Abstract geooperator category</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Geodata">
+    <skos:topConceptOf rdf:resource="#GeooperatorCategories"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Geodata</skos:prefLabel>
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:inScheme rdf:resource="#GeodataPerspective"/>
+    <skos:topConceptOf rdf:resource="#GeodataPerspective"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#GeoinformaticsPerspective">
+    <skos:hasTopConcept rdf:resource="#Geoinformatics"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Geoinformatics perspective</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ArcGIS">
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ArcGIS</skos:prefLabel>
+    <skos:broaderTransitive rdf:resource="#Legacy_GIS"/>
+    <skos:inScheme rdf:resource="#LegacyGISPerspective"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/dc/elements/1.1/date">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Legacy_GIS">
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Legacy GIS</skos:prefLabel>
+    <skos:topConceptOf rdf:resource="#GeooperatorCategories"/>
+    <skos:inScheme rdf:resource="#LegacyGISPerspective"/>
+    <skos:topConceptOf rdf:resource="#LegacyGISPerspective"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ArcGIS_toolboxes">
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Arc GIS toolboxes</skos:prefLabel>
+    <skos:member rdf:resource="#Analysis_toolbox"/>
+    <skos:member rdf:resource="#Spatial_analyst_toolbox"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Collection"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Raster_to_raster">
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:related rdf:resource="#Raster_-_functionality_class"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Raster to raster</skos:prefLabel>
+    <skos:broaderTransitive rdf:resource="#Raster"/>
+    <skos:inScheme rdf:resource="#GeodataPerspective"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#FormalPerspective">
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Formal perspective</skos:prefLabel>
+    <skos:hasTopConcept rdf:resource="#Formal"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#v.select">
+    <skos:relatedMatch rdf:resource="#Vector"/>
+    <skos:relatedMatch rdf:resource="#Available_online"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <pragmaticCategories rdf:resource="#Pragmatic"/>
+    <technicalCategories rdf:resource="#Available_in_operating_system"/>
+    <legacyGISCategories rdf:resource="#Vector_-_functionality_class"/>
+    <technicalCategories rdf:resource="#Linux"/>
+    <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://grass.osgeo.org/grass71/manuals/v.select.html</skos:definition>
+    <legacyGISCategories rdf:resource="#Legacy_GIS"/>
+    <geoinformaticsCategories rdf:resource="#Geoinformatics"/>
+    <geodataCategories rdf:resource="#Geodata"/>
+    <skos:relatedMatch rdf:resource="#OGC_Web_Processing_Service"/>
+    <skos:relatedMatch rdf:resource="#Egenhofer_operators"/>
+    <skos:inScheme rdf:resource="#GRASSGIS"/>
+    <pragmaticCategories rdf:resource="#Modeling_suitability_and_movement_and_interaction"/>
+    <pragmaticCategories rdf:resource="#Transport_route_planning"/>
+    <skos:relatedMatch rdf:resource="#Vector_to_vector"/>
+    <formalCategories rdf:resource="#Binary"/>
+    <geodataCategories rdf:resource="#Vector_to_vector"/>
+    <skos:scopeNote rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Selects features from vector map (A) by features from other vector map (B).</skos:scopeNote>
+    <skos:inScheme rdf:resource="#Geooperators"/>
+    <skos:relatedMatch rdf:resource="#Geoinformatics"/>
+    <skos:relatedMatch rdf:resource="#Vector_-_functionality_class"/>
+    <technicalCategories rdf:resource="#Available_online"/>
+    <skos:relatedMatch rdf:resource="#Available_in_operating_system"/>
+    <skos:relatedMatch rdf:resource="#Legacy_GIS"/>
+    <technicalCategories rdf:resource="#Windows"/>
+    <pragmaticCategories rdf:resource="#Modeling_paths"/>
+    <skos:relatedMatch rdf:resource="#GRASS"/>
+    <technicalCategories rdf:resource="#OGC_Web_Processing_Service"/>
+    <skos:relatedMatch rdf:resource="#Transport_route_planning"/>
+    <technicalCategories rdf:resource="#Technical"/>
+    <skos:relatedMatch rdf:resource="#Modeling_paths"/>
+    <skos:broadMatch rdf:resource="#Clip"/>
+    <geoinformaticsCategories rdf:resource="#Overlay"/>
+    <skos:relatedMatch rdf:resource="#Formal"/>
+    <skos:relatedMatch rdf:resource="#Pragmatic"/>
+    <skos:relatedMatch rdf:resource="#Modeling_suitability_and_movement_and_interaction"/>
+    <skos:relatedMatch rdf:resource="#Technical"/>
+    <skos:relatedMatch rdf:resource="#Windows"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">v.select</skos:prefLabel>
+    <formalCategories rdf:resource="#Formal"/>
+    <relatedGeooperators rdf:resource="#Clip"/>
+    <geoinformaticsCategories rdf:resource="#Egenhofer_operators"/>
+    <skos:relatedMatch rdf:resource="#Linux"/>
+    <skos:relatedMatch rdf:resource="#Binary"/>
+    <skos:relatedMatch rdf:resource="#Overlay"/>
+    <legacyGISCategories rdf:resource="#GRASS"/>
+    <skos:relatedMatch rdf:resource="#Geodata"/>
+    <geodataCategories rdf:resource="#Vector"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Vector_-_functionality_class">
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vector - functionality class</skos:prefLabel>
+    <skos:broaderTransitive rdf:resource="#Functionality_classes"/>
+    <skos:inScheme rdf:resource="#LegacyGISPerspective"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Keywords">
+    <skos:inScheme rdf:resource="#AbstractGeooperatorCategories"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Keywords</skos:prefLabel>
+    <skos:broaderTransitive rdf:resource="#GRASS"/>
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:inScheme rdf:resource="#LegacyGISPerspective"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#LocalDifference">
+    <skos:relatedMatch rdf:resource="#Geoinformatics"/>
+    <geodataCategories rdf:resource="#Raster_to_raster"/>
+    <skos:relatedMatch rdf:resource="#Raster_to_raster"/>
+    <skos:inScheme rdf:resource="#AbstractGeooperators"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">LocalDifference</skos:prefLabel>
+    <geoinformaticsCategories rdf:resource="#Geoinformatics"/>
+    <relatedGeooperators rdf:resource="#Raster_calculator"/>
+    <skos:narrowMatch rdf:resource="#Raster_calculator"/>
+    <skos:relatedMatch rdf:resource="#Formal"/>
+    <relatedGeooperators rdf:resource="#r.mapcalc"/>
+    <legacyGISCategories rdf:resource="#Legacy_GIS"/>
+    <skos:relatedMatch rdf:resource="#Map_Algebra"/>
+    <geoinformaticsCategories rdf:resource="#Map_Algebra"/>
+    <formalCategories rdf:resource="#Formal"/>
+    <legacyGISCategories rdf:resource="#abstract"/>
+    <geodataCategories rdf:resource="#Raster"/>
+    <skos:relatedMatch rdf:resource="#Geodata"/>
+    <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tomlin, C. D. (1990). Geographic information systems and cartographic modeling. Englewood Cliffs, New Jersey: Prentice-Hall.</skos:definition>
+    <skos:scopeNote rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Abstract geooperator implementing the Map Algebra LocalDifference function.</skos:scopeNote>
+    <skos:relatedMatch rdf:resource="#Binary"/>
+    <skos:inScheme rdf:resource="#Geooperators"/>
+    <skos:narrowMatch rdf:resource="#r.mapcalc"/>
+    <formalCategories rdf:resource="#Binary"/>
+    <skos:relatedMatch rdf:resource="#Legacy_GIS"/>
+    <geodataCategories rdf:resource="#Geodata"/>
+    <skos:relatedMatch rdf:resource="#LocalFUNCTION_operations"/>
+    <skos:relatedMatch rdf:resource="#Raster"/>
+    <geoinformaticsCategories rdf:resource="#LocalFUNCTION_operations"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Technical">
+    <skos:topConceptOf rdf:resource="#GeooperatorCategories"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Technical</skos:prefLabel>
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:inScheme rdf:resource="#TechnicalPerspective"/>
+    <skos:topConceptOf rdf:resource="#TechnicalPerspective"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Map_Algebra">
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Map Algebra</skos:prefLabel>
+    <skos:broaderTransitive rdf:resource="#Geoinformatics"/>
+    <skos:inScheme rdf:resource="#GeoinformaticsPerspective"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#relatedGeooperators">
+    <rdfs:range rdf:resource="http://www.w3.org/2008/05/skos#Concept"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#LegacyGISPerspective">
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Legacy GIS perspective</skos:prefLabel>
+    <skos:hasTopConcept rdf:resource="#Legacy_GIS"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/dc/elements/1.1/description">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#GeodataPerspective">
+    <skos:hasTopConcept rdf:resource="#Geodata"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Geodata perspective</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Linux">
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Linux</skos:prefLabel>
+    <skos:broaderTransitive rdf:resource="#Available_in_operating_system"/>
+    <skos:inScheme rdf:resource="#TechnicalPerspective"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Clip">
+    <skos:narrowMatch rdf:resource="#v.overlay"/>
+    <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://resources.arcgis.com/en/help/main/10.2/index.html#/Clip/000800000004000000/</skos:definition>
+    <skos:relatedMatch rdf:resource="#Vector_to_vector"/>
+    <skos:inScheme rdf:resource="#Geooperators"/>
+    <skos:relatedMatch rdf:resource="#Vector"/>
+    <pragmaticCategories rdf:resource="#Transport_route_planning"/>
+    <technicalCategories rdf:resource="#Available_online"/>
+    <pragmaticCategories rdf:resource="#Modeling_suitability_and_movement_and_interaction"/>
+    <skos:relatedMatch rdf:resource="#Modeling_suitability_and_movement_and_interaction"/>
+    <relatedGeooperators rdf:resource="#v.select"/>
+    <relatedGeooperators rdf:resource="#v.overlay"/>
+    <skos:relatedMatch rdf:resource="#Windows"/>
+    <skos:relatedMatch rdf:resource="#Available_online"/>
+    <skos:relatedMatch rdf:resource="#Available_in_operating_system"/>
+    <skos:relatedMatch rdf:resource="#Analysis_toolbox"/>
+    <geodataCategories rdf:resource="#Geodata"/>
+    <skos:scopeNote rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Extracts input features that overlay the clip features.</skos:scopeNote>
+    <skos:relatedMatch rdf:resource="#Geodata"/>
+    <technicalCategories rdf:resource="#Windows"/>
+    <legacyGISCategories rdf:resource="#Extract_toolset"/>
+    <pragmaticCategories rdf:resource="#Pragmatic"/>
+    <skos:relatedMatch rdf:resource="#ArcGIS_online"/>
+    <geodataCategories rdf:resource="#Vector_to_vector"/>
+    <skos:relatedMatch rdf:resource="#Technical"/>
+    <legacyGISCategories rdf:resource="#ArcGIS"/>
+    <formalCategories rdf:resource="#Formal"/>
+    <skos:relatedMatch rdf:resource="#Modeling_paths"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <formalCategories rdf:resource="#Binary"/>
+    <geodataCategories rdf:resource="#Vector"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Clip</skos:prefLabel>
+    <legacyGISCategories rdf:resource="#Analysis_toolbox"/>
+    <skos:inScheme rdf:resource="#EsriArcGIS"/>
+    <skos:relatedMatch rdf:resource="#Legacy_GIS"/>
+    <skos:narrowMatch rdf:resource="#v.select"/>
+    <skos:relatedMatch rdf:resource="#Pragmatic"/>
+    <technicalCategories rdf:resource="#Technical"/>
+    <technicalCategories rdf:resource="#Available_in_operating_system"/>
+    <technicalCategories rdf:resource="#ArcGIS_online"/>
+    <pragmaticCategories rdf:resource="#Modeling_paths"/>
+    <skos:relatedMatch rdf:resource="#ArcGIS"/>
+    <skos:relatedMatch rdf:resource="#Transport_route_planning"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Formal">
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Formal</skos:prefLabel>
+    <skos:topConceptOf rdf:resource="#FormalPerspective"/>
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:topConceptOf rdf:resource="#GeooperatorCategories"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:inScheme rdf:resource="#FormalPerspective"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/dc/elements/1.1/format">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/dc/terms/creator">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Pragmatic">
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pragmatic</skos:prefLabel>
+    <skos:topConceptOf rdf:resource="#GeooperatorCategories"/>
+    <skos:topConceptOf rdf:resource="#PragmaticPerspective"/>
+    <skos:inScheme rdf:resource="#PragmaticPerspective"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/dc/elements/1.1/creator">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Arity">
+    <skos:broaderTransitive rdf:resource="#Formal"/>
+    <skos:inScheme rdf:resource="#FormalPerspective"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Arity</skos:prefLabel>
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:inScheme rdf:resource="#AbstractGeooperatorCategories"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Binary">
+    <skos:inScheme rdf:resource="#FormalPerspective"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Binary</skos:prefLabel>
+    <skos:broaderTransitive rdf:resource="#Arity"/>
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Raster_calculator">
+    <technicalCategories rdf:resource="#Windows"/>
+    <skos:relatedMatch rdf:resource="#Geoinformatics"/>
+    <skos:broadMatch rdf:resource="#LocalDifference"/>
+    <pragmaticCategories rdf:resource="#Pragmatic"/>
+    <formalCategories rdf:resource="#n-ary"/>
+    <formalCategories rdf:resource="#Formal"/>
+    <skos:relatedMatch rdf:resource="#Pragmatic"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <geoinformaticsCategories rdf:resource="#Geoinformatics"/>
+    <legacyGISCategories rdf:resource="#ArcGIS"/>
+    <relatedGeooperators rdf:resource="#r.mapcalc"/>
+    <skos:relatedMatch rdf:resource="#Map_Algebra"/>
+    <skos:relatedMatch rdf:resource="#Spatial_analyst_toolbox"/>
+    <skos:relatedMatch rdf:resource="#LocalFUNCTION_operations"/>
+    <geodataCategories rdf:resource="#Raster"/>
+    <skos:inScheme rdf:resource="#EsriArcGIS"/>
+    <skos:closeMatch rdf:resource="#r.mapcalc"/>
+    <skos:relatedMatch rdf:resource="#Transport_route_planning"/>
+    <skos:relatedMatch rdf:resource="#ArcGIS"/>
+    <geodataCategories rdf:resource="#Geodata"/>
+    <pragmaticCategories rdf:resource="#Modeling_paths"/>
+    <pragmaticCategories rdf:resource="#Transport_route_planning"/>
+    <geoinformaticsCategories rdf:resource="#Map_Algebra"/>
+    <skos:relatedMatch rdf:resource="#Windows"/>
+    <skos:relatedMatch rdf:resource="#Raster_to_raster"/>
+    <legacyGISCategories rdf:resource="#Spatial_analyst_toolbox"/>
+    <skos:relatedMatch rdf:resource="#Legacy_GIS"/>
+    <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://resources.arcgis.com/en/help/main/10.2/index.html#//009z000000z7000000</skos:definition>
+    <technicalCategories rdf:resource="#Technical"/>
+    <skos:scopeNote rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Builds and executes a single Map Algebra expression using Python syntax in a calculator-like interface.</skos:scopeNote>
+    <skos:relatedMatch rdf:resource="#Geodata"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Raster calculator</skos:prefLabel>
+    <skos:relatedMatch rdf:resource="#Modeling_suitability_and_movement_and_interaction"/>
+    <relatedGeooperators rdf:resource="#LocalDifference"/>
+    <skos:relatedMatch rdf:resource="#Available_in_operating_system"/>
+    <geodataCategories rdf:resource="#Raster_to_raster"/>
+    <geoinformaticsCategories rdf:resource="#LocalFUNCTION_operations"/>
+    <skos:inScheme rdf:resource="#Geooperators"/>
+    <pragmaticCategories rdf:resource="#Modeling_suitability_and_movement_and_interaction"/>
+    <skos:relatedMatch rdf:resource="#Raster"/>
+    <skos:relatedMatch rdf:resource="#Map_Algebra_toolset"/>
+    <skos:relatedMatch rdf:resource="#Modeling_paths"/>
+    <skos:relatedMatch rdf:resource="#Technical"/>
+    <legacyGISCategories rdf:resource="#Map_Algebra_toolset"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#AbstractGeooperators">
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Abstract geooperators</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#LocalFUNCTION_operations">
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">LocalFUNCTION operations</skos:prefLabel>
+    <skos:broaderTransitive rdf:resource="#Map_Algebra"/>
+    <skos:inScheme rdf:resource="#GeoinformaticsPerspective"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Raster">
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Raster</skos:prefLabel>
+    <skos:broaderTransitive rdf:resource="#Geodata"/>
+    <skos:inScheme rdf:resource="#GeodataPerspective"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Toolboxes">
+    <skos:inScheme rdf:resource="#AbstractGeooperatorCategories"/>
+    <skos:broaderTransitive rdf:resource="#ArcGIS"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Toolboxes</skos:prefLabel>
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:inScheme rdf:resource="#LegacyGISPerspective"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#v.overlay">
+    <skos:relatedMatch rdf:resource="#OGC_Web_Processing_Service"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:relatedMatch rdf:resource="#Pragmatic"/>
+    <skos:relatedMatch rdf:resource="#Egenhofer_operators"/>
+    <technicalCategories rdf:resource="#Available_online"/>
+    <skos:relatedMatch rdf:resource="#Vector_to_vector"/>
+    <geodataCategories rdf:resource="#Geodata"/>
+    <formalCategories rdf:resource="#Binary"/>
+    <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://grass.osgeo.org/grass71/manuals/v.overlay.html</skos:definition>
+    <technicalCategories rdf:resource="#Linux"/>
+    <skos:relatedMatch rdf:resource="#Geoinformatics"/>
+    <pragmaticCategories rdf:resource="#Pragmatic"/>
+    <geodataCategories rdf:resource="#Vector"/>
+    <skos:relatedMatch rdf:resource="#Modeling_paths"/>
+    <skos:relatedMatch rdf:resource="#Linux"/>
+    <legacyGISCategories rdf:resource="#Legacy_GIS"/>
+    <skos:relatedMatch rdf:resource="#Formal"/>
+    <skos:relatedMatch rdf:resource="#Geodata"/>
+    <skos:inScheme rdf:resource="#GRASSGIS"/>
+    <skos:relatedMatch rdf:resource="#Transport_route_planning"/>
+    <geoinformaticsCategories rdf:resource="#Overlay"/>
+    <pragmaticCategories rdf:resource="#Transport_route_planning"/>
+    <skos:relatedMatch rdf:resource="#Binary"/>
+    <skos:relatedMatch rdf:resource="#Available_online"/>
+    <skos:relatedMatch rdf:resource="#Vector"/>
+    <skos:inScheme rdf:resource="#Geooperators"/>
+    <skos:relatedMatch rdf:resource="#Available_in_operating_system"/>
+    <skos:relatedMatch rdf:resource="#Legacy_GIS"/>
+    <skos:relatedMatch rdf:resource="#GRASS"/>
+    <skos:relatedMatch rdf:resource="#Overlay"/>
+    <legacyGISCategories rdf:resource="#Vector_-_functionality_class"/>
+    <pragmaticCategories rdf:resource="#Modeling_suitability_and_movement_and_interaction"/>
+    <legacyGISCategories rdf:resource="#GRASS"/>
+    <geoinformaticsCategories rdf:resource="#Egenhofer_operators"/>
+    <skos:relatedMatch rdf:resource="#Vector_-_functionality_class"/>
+    <skos:broadMatch rdf:resource="#Clip"/>
+    <geodataCategories rdf:resource="#Vector_to_vector"/>
+    <skos:scopeNote rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Overlays two vector maps.</skos:scopeNote>
+    <relatedGeooperators rdf:resource="#Clip"/>
+    <technicalCategories rdf:resource="#Windows"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">v.overlay</skos:prefLabel>
+    <formalCategories rdf:resource="#Formal"/>
+    <skos:relatedMatch rdf:resource="#Technical"/>
+    <pragmaticCategories rdf:resource="#Modeling_paths"/>
+    <technicalCategories rdf:resource="#Technical"/>
+    <skos:relatedMatch rdf:resource="#Windows"/>
+    <technicalCategories rdf:resource="#OGC_Web_Processing_Service"/>
+    <geoinformaticsCategories rdf:resource="#Geoinformatics"/>
+    <technicalCategories rdf:resource="#Available_in_operating_system"/>
+    <skos:relatedMatch rdf:resource="#Modeling_suitability_and_movement_and_interaction"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Vector_to_vector">
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vector to vector</skos:prefLabel>
+    <skos:broaderTransitive rdf:resource="#Vector"/>
+    <skos:inScheme rdf:resource="#GeodataPerspective"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Modeling_suitability_and_movement_and_interaction">
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Modeling suitability, movement, and interaction</skos:prefLabel>
+    <skos:broaderTransitive rdf:resource="#Pragmatic"/>
+    <skos:inScheme rdf:resource="#PragmaticPerspective"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Map_Algebra_toolset">
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Map Algebra toolset</skos:prefLabel>
+    <skos:broaderTransitive rdf:resource="#Spatial_analyst_toolbox"/>
+    <skos:inScheme rdf:resource="#LegacyGISPerspective"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Algebra_-_keywords">
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Algebra - keywords</skos:prefLabel>
+    <skos:broaderTransitive rdf:resource="#Keywords"/>
+    <skos:inScheme rdf:resource="#LegacyGISPerspective"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Windows">
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:broaderTransitive rdf:resource="#Available_in_operating_system"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Windows</skos:prefLabel>
+    <skos:inScheme rdf:resource="#TechnicalPerspective"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#EsriArcGIS">
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Esri ArcGIS</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Vector">
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vector</skos:prefLabel>
+    <skos:broaderTransitive rdf:resource="#Geodata"/>
+    <skos:inScheme rdf:resource="#GeodataPerspective"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Modeling_paths">
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Modeling paths</skos:prefLabel>
+    <skos:broaderTransitive rdf:resource="#Modeling_suitability_and_movement_and_interaction"/>
+    <skos:inScheme rdf:resource="#PragmaticPerspective"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PragmaticPerspective">
+    <skos:hasTopConcept rdf:resource="#Pragmatic"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pragmatic perspective</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#geoinformaticsCategories">
+    <rdfs:range rdf:resource="http://www.w3.org/2008/05/skos#Concept"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#n-ary">
+    <skos:inScheme rdf:resource="#FormalPerspective"/>
+    <skos:broaderTransitive rdf:resource="#Arity"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">n-ary</skos:prefLabel>
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#formalCategories">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2008/05/skos#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Available_online">
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Available online</skos:prefLabel>
+    <skos:broaderTransitive rdf:resource="#Technical"/>
+    <skos:inScheme rdf:resource="#TechnicalPerspective"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Raster_-_functionality_class">
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:broaderTransitive rdf:resource="#Functionality_classes"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Raster - functionality class</skos:prefLabel>
+    <skos:inScheme rdf:resource="#LegacyGISPerspective"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#abstract">
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">abstract</skos:prefLabel>
+    <skos:broaderTransitive rdf:resource="#Legacy_GIS"/>
+    <skos:inScheme rdf:resource="#LegacyGISPerspective"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Available_in_operating_system">
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Available in operating system</skos:prefLabel>
+    <skos:broaderTransitive rdf:resource="#Technical"/>
+    <skos:inScheme rdf:resource="#TechnicalPerspective"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/dc/elements/1.1/title">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Extract_toolset">
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Extract toolset</skos:prefLabel>
+    <skos:broaderTransitive rdf:resource="#Analysis_toolbox"/>
+    <skos:inScheme rdf:resource="#LegacyGISPerspective"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#pragmaticCategories">
+    <rdfs:range rdf:resource="http://www.w3.org/2008/05/skos#Concept"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#GRASSGIS">
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GRASS GIS</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Spatial_analyst_toolbox">
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Spatial analyst toolbox</skos:prefLabel>
+    <skos:broaderTransitive rdf:resource="#Toolboxes"/>
+    <skos:inScheme rdf:resource="#LegacyGISPerspective"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Egenhofer_operators">
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Egenhofer operators</skos:prefLabel>
+    <skos:broaderTransitive rdf:resource="#Geoinformatics"/>
+    <skos:inScheme rdf:resource="#GeoinformaticsPerspective"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#GRASS_keywords">
+    <skos:member rdf:resource="#Algebra_-_keywords"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GRASS keywords</skos:prefLabel>
+    <skos:member rdf:resource="#Raster_-_keywords"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Collection"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Geoprocessing_patterns">
+    <skos:inScheme rdf:resource="#AbstractGeooperatorCategories"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Geoprocessing patterns</skos:prefLabel>
+    <skos:broaderTransitive rdf:resource="#Pragmatic"/>
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:inScheme rdf:resource="#PragmaticPerspective"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#GRASS">
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GRASS</skos:prefLabel>
+    <skos:broaderTransitive rdf:resource="#Legacy_GIS"/>
+    <skos:inScheme rdf:resource="#LegacyGISPerspective"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Analysis_toolbox">
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Analysis toolbox</skos:prefLabel>
+    <skos:broaderTransitive rdf:resource="#Toolboxes"/>
+    <skos:inScheme rdf:resource="#LegacyGISPerspective"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#technicalCategories">
+    <rdfs:range rdf:resource="http://www.w3.org/2008/05/skos#Concept"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#GeooperatorCategories">
+    <skos:hasTopConcept rdf:resource="#Formal"/>
+    <skos:hasTopConcept rdf:resource="#Pragmatic"/>
+    <skos:hasTopConcept rdf:resource="#Geoinformatics"/>
+    <skos:hasTopConcept rdf:resource="#Technical"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Geooperator category</skos:prefLabel>
+    <skos:hasTopConcept rdf:resource="#Legacy_GIS"/>
+    <skos:hasTopConcept rdf:resource="#Geodata"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Functionality_classes">
+    <skos:inScheme rdf:resource="#AbstractGeooperatorCategories"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Functionality classes</skos:prefLabel>
+    <skos:broaderTransitive rdf:resource="#GRASS"/>
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:inScheme rdf:resource="#LegacyGISPerspective"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#GRASS_functionality_classes">
+    <skos:member rdf:resource="#Raster_-_functionality_class"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Functionality classes</skos:prefLabel>
+    <skos:member rdf:resource="#Vector_-_functionality_class"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Collection"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#geodataCategories">
+    <rdfs:range rdf:resource="http://www.w3.org/2008/05/skos#Concept"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="">
+    <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2015-01-13</dc:date>
+    <dc:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Johannes Brauner</dc:creator>
+    <owl:imports rdf:resource="http://www.w3.org/2004/02/skos/core"/>
+    <dc:title rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Geooperator thesaurus</dc:title>
+    <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">SKOS representation of a geooperator thesaurus started during the PhD thesis ("Geoprocessing in Spatial Data Infrastructures - formalizations for geooperators") of Johannes Brauner.</dc:description>
+    <rdfs:seeAlso rdf:resource="http://geoprocessing.geo.tu-dresden.de/index.html"/>
+    <dc:license rdf:resource="http://creativecommons.org/licenses/by-sa/4.0/"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/dc/elements/1.1/license">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ArcGIS_online">
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ArcGIS online</skos:prefLabel>
+    <skos:broaderTransitive rdf:resource="#Available_online"/>
+    <skos:inScheme rdf:resource="#TechnicalPerspective"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#legacyGISCategories">
+    <rdfs:range rdf:resource="http://www.w3.org/2008/05/skos#Concept"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#TechnicalPerspective">
+    <skos:hasTopConcept rdf:resource="#Technical"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Technical perspective</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Overlay">
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Overlay</skos:prefLabel>
+    <skos:broaderTransitive rdf:resource="#Geoinformatics"/>
+    <skos:inScheme rdf:resource="#GeoinformaticsPerspective"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Transport_route_planning">
+    <skos:inScheme rdf:resource="#GeooperatorCategories"/>
+    <skos:prefLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Transport route planning</skos:prefLabel>
+    <skos:broaderTransitive rdf:resource="#Geoprocessing_patterns"/>
+    <skos:inScheme rdf:resource="#PragmaticPerspective"/>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+</rdf:RDF>

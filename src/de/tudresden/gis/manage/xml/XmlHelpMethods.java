@@ -261,6 +261,12 @@ public class XmlHelpMethods {
 		NodeList parents = target.getElementsByTagName(targetTagNameParent);
 		Element parent = (Element) parents.item(0); // g:options - only 1
 													// element
+		//add space placeholder as first entry
+		Element o = target.createElement(targetTagNameChild);
+		o.setAttribute("g:value", "");
+		o.setAttribute("g:label", "");
+		parent.appendChild(o);
+		
 		for (int i = 0; i < nameList.getLength(); i++) {
 			String value = nameList.item(i).getTextContent();
 			if (value != null && !value.equals("") && !ignoreList.contains(value)) {

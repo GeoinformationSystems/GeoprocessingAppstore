@@ -28,7 +28,7 @@ public class RecordSnippetWriter {
   // class variables =============================================================
   
   /** clip text length (255) */
-  private static final int CLIP_TEXT_LENGTH = 255;
+  private static final int CLIP_TEXT_LENGTH = 512;
   
   /** snippet style class */
   private static final String SNIPPET_STYLE_CLASS = "snippet";
@@ -324,6 +324,9 @@ public class RecordSnippetWriter {
       }
       _writer.print(Val.escapeXmlForBrowser(url));
       _writer.print("\" target=\"" + _target.toHtmlValue() + "\">");
+      
+      //_writer.print(">");
+      
       _writer.print(Val.escapeXmlForBrowser(text));
       _writer.println("</A>");
     }
