@@ -219,7 +219,7 @@ function mainOpenDefaultMapViewer() {
 		var wps_url = "http://apps1.glues.geo.tu-dresden.de:8080/52n-wps-webapp/WebProcessingService";
 		
 		//set proxy for settings and call capabilities
-		//bg:proxy url is disabled in wps-js0.1.1.js (BaseRequest) to work properly - TODO:is it OK?
+		//BG:proxy url is disabled in wps-js0.1.1.js (BaseRequest) to work properly - TODO:is it OK?
 		$.wpsSetup({
 			proxy : {
 				url : "/wps_proxy/wps_proxy?url=",
@@ -229,7 +229,7 @@ function mainOpenDefaultMapViewer() {
 			    showImages : true
 			}				
 		});
-		//bg:call for capabilties
+		//BG:call for capabilities
 		getCapabilities(wps_url);
 
 		$('#capabilitiesByClick').wpsCall({
@@ -237,12 +237,10 @@ function mainOpenDefaultMapViewer() {
 			requestType : GET_CAPABILITIES_TYPE
 		});
 
-		var uuid = getURLParam("uuid");
-		console.log(uuid); //TODO:bg: call process based on id/title
-		
-		//HOWTO
+		var uuid = getURLParam("uuid"); 
+		 
 		//DONE: -> catch id, title from geoportal - compare with available processes from wps and call describe process
-		//CH added 2015-01-23 
+		//CH: added 2015-01-23 
 		var infourl = "http://apps1.glues.geo.tu-dresden.de:8080/appstore/rest/document?id=" + uuid;	
 		var appstoreIdentifier = "";
 		
@@ -253,10 +251,24 @@ function mainOpenDefaultMapViewer() {
 		    dataType: "xml", 
 		    success: function(msg) { 
 		    	response = msg;  
-				if (response.getElementsByTagName("Identifier")[0])
-					if (response.getElementsByTagName("Identifier")[0].childNodes[0])
-						if (response.getElementsByTagName("Identifier")[0].childNodes[0].data)
-							appstoreIdentifier = response.getElementsByTagName("Identifier")[0].childNodes[0].data; 
+				ows = "http://www.opengis.net/ows/1.1";
+				if (response.getElementsByTagNameNS(ows, "Identifier")[0])
+					if (response.getElementsByTagNameNS(ows, "Identifier")[0].childNodes[0])
+						if (response.getElementsByTagNameNS(ows, "Identifier")[0].childNodes[0].data) {
+							appstoreIdentifier = response.getElementsByTagNameNS(ows, "Identifier")[0].childNodes[0].data; 
+							console.log(appstoreIdentifier); 
+							
+							var selectOptions = document.getElementById("processes").options;
+							if (appstoreIdentifier) {
+								for (var i = 0; i < selectOptions.length; i++) {
+									if (selectOptions[i].value == appstoreIdentifier) { 
+										document.getElementById("processes").options[i].selected = true;
+										describeProcess(appstoreIdentifier,null,null);
+									}
+								}
+							}
+							
+						}	
 		    },
 		    error: function(err) {  
 			    if (err.status == 200) {

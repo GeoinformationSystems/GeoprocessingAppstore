@@ -25,8 +25,9 @@ public class Splitter {
 	 * @return abstract text without platform and container type; "not defined" in case of empty abstract 
 	 */
 	public String getAbstract(String abstractText) { 
-		abstractText = abstractText.replaceAll("\\s+",""); 
-		String[] parts = abstractText.split("Thecontainertypeofthedescribedprocessis"); 
+		//abstractText = abstractText.replaceAll("\\s+",""); 
+		String[] parts = abstractText.split("The containertype of the described process is "); 
+		 
 		if (parts[0].length() == 0)
 			return "not defined";
 		else 

@@ -3044,7 +3044,7 @@ function getCapabilities(wpsUrl) {
 					describeProcess(appstoreIdentifier,null,null);
 				}
 			}
-		}
+		} 
 		//CH end
     });
     
@@ -3228,4 +3228,3 @@ function execute(formId, wpsUrl) {
 	});
     
 }(jQuery));
-
