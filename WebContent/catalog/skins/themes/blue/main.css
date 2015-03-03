@@ -513,6 +513,7 @@ th {
 	text-align: center;
 }
 .homeTableColRight {
+	width: 600px !important;
 	vertical-align: top;
 	text-align: center;
 }
