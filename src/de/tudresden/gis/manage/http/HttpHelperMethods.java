@@ -264,7 +264,7 @@ public class HttpHelperMethods {
 		String container ="";
 		try {
 			org.w3c.dom.Document doc = XmlHelpMethods.createDocumentString(xml);
-			NodeList nodes = doc.getElementsByTagName("mcp:containerType"); 
+			NodeList nodes = doc.getElementsByTagNameNS("*", "containerType"); 
 			container = nodes.item(0).getTextContent();
 		} catch (SAXException | IOException | ParserConfigurationException | NullPointerException  e) {
 			container = "";
@@ -281,7 +281,7 @@ public class HttpHelperMethods {
 		String platform ="";
 		try {
 			org.w3c.dom.Document doc = XmlHelpMethods.createDocumentString(xml);
-			platform = doc.getElementsByTagName("mcp:platform").item(0).getAttributes().item(0).getTextContent(); 
+			platform = doc.getElementsByTagNameNS("*", "platform").item(0).getAttributes().item(0).getTextContent(); 
 		} catch (SAXException | IOException | ParserConfigurationException | NullPointerException  e) {
 			platform = "";
 		}

@@ -676,11 +676,28 @@ function uncheckForm() {
 
 <% // layout the page %>
 
+
+<iframe src="../../../GcService/" width="100%" height="500" name="facetted search" marginheight="0" marginwidth="0" frameborder="0" id="myframe"  onload="startExternalSearch();">
+</iframe>
+
+<script>
+//extracts search string from url, sends it to solr search field in iframe and clicks seacrhc button 
+function startExternalSearch() {
+	var parameter = location.search.substring(1);
+//	console.log(parameter !== undefined);
+	var temp = parameter.split("=");
+	if(temp[1] !== undefined){
+		searchString = unescape(temp[1]);
+	    var x = document.getElementById("myframe");
+	    var y = (x.contentWindow || x.contentDocument);
+	    if (y.document)y = y.document;
+	    y.getElementById("g_solr_Expression_0_text").value = searchString;
+	    y.getElementById("searchButton").click();
+	}
+}
+</script>
+
 <!-- 
-<iframe src="../../../GcService/" width="836" height="460" name="facetted search" marginheight="0" marginwidth="0" frameborder="0">
-</iframe> -->
-
-
 <h:form id="frmSearchCriteria" 
   
   onkeypress="javascript:return scSubmitForm(event, this);" 
@@ -701,6 +718,7 @@ function uncheckForm() {
 	</h:panelGrid>
 
 </h:form>
+ -->
 <f:verbatim>
   <!-- iframe id="frmDistSearch" width="0px"  
     onload="javascript:distributedSearchDone()"

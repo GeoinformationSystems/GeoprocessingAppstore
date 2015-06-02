@@ -172,7 +172,7 @@ dojo.declare("BrowseMain", null, {
     elHdr.appendChild(elPageControl);
     
   },
-   
+  
   executeSearch: function(e,nStartIndex) {
     var wasFiltered = false;
     if (nStartIndex == null) nStartIndex = 1;
@@ -228,7 +228,123 @@ dojo.declare("BrowseMain", null, {
           if (nTotalResults > 0) {      
           	nStartIndex = this.parseHiddenInt(response,"<input type=\"hidden\" id=\"startIndex\" value=\"", nStartIndex);
   	        this.buildHeader(nStartIndex,nTotalResults,wasFiltered);
-  	        dojo.byId(this.resultsBodyId).innerHTML = response;
+
+  	        function getContainerTypeIcon(containerType){
+	  	  	  var ctLow = containerType.toLowerCase();
+	  	  	  var result;
+	  	  	  if (!ctLow || 0 === ctLow.length){
+	  	  		  result = "/catalog/images/mcp/icons/notDefined_small.png";
+	  	  	  } else if (ctLow.search("java") != -1) {
+	  	            result = "/catalog/images/mcp/icons/java_small.png";
+	  	  	  } else if (ctLow.search("python") != -1) {
+	  	            result = "/catalog/images/mcp/icons/python_small.png";		  
+	  	  	  } else if (ctLow.search("arc") != -1) {
+	  	            result = "/catalog/images/mcp/icons/arctoolbox_small.png";		  
+	  	  	  } else if (ctLow.search("rscript") != -1) {
+	  	            result = "/catalog/images/mcp/icons/r_small.png";		  
+	  	  	  } else {
+	  	  	      result = "/catalog/images/mcp/icons/no_picture_small.png";		  
+	  	  	  }
+	  	  	  return result;
+	  	  	};
+	  	  	
+	  	  	function isEmpty(string){
+	  	  		return (!string || 0 === string.length);
+	  	  	}
+	  	  	
+  	        function getContainerTypeIcon(containerType){
+  	          var dir = "/../geoportal/catalog/images/mcp/icons/"
+			  var containerTyoeLowerCase = containerType.toLowerCase();
+			  var result;
+			  if (isEmpty(containerTyoeLowerCase)){
+				  result = dir + "notDefined_small.png";
+			  } else if (containerTyoeLowerCase.search("java") != -1) {
+			    result = dir + "java_small.png";
+			  } else if (containerTyoeLowerCase.search("python") != -1) {
+			    result = dir + "python_small.png";		  
+			  } else if (containerTyoeLowerCase.search("arc") != -1) {
+			    result = dir + "arctoolbox_small.png";		  
+			  } else if (containerTyoeLowerCase.search("rscript") != -1) {
+			    result = dir + "r_small.png";		  
+			  } else {
+			      result = dir + "no_picture_small.png";		  
+			  }
+			  return result;
+  	  	  	};
+  	  	  	
+	  	  	function getPlatformIcon(platform){
+	  	      var dir = "/../geoportal/catalog/images/mcp/icons/"
+			  var platformLowerCase = platform.toLowerCase();
+			  var result;
+			  if (isEmpty(platformLowerCase)){
+				  result = dir + "notDefined_small.png";
+			  } else if (platformLowerCase.search("java") != -1) {
+			    result = dir + "java_small.png";
+			  } else if (platformLowerCase.search("python") != -1) {
+			    result = dir + "python_small.png";		
+			  } else if (platformLowerCase.search("numpy-") != -1) {
+			    result = dir + "numphy_small.png";		  
+			  } else if (platformLowerCase.search("arc") != -1) {
+			    result = dir + "arcgis_small.png";			    
+			  } else if (platformLowerCase.search("gdal-python-") != -1) {
+			    result = dir + "gdal_Python_small.png";		  
+			  } else if (platformLowerCase.search("gdal") != -1) {
+			    result = dir + "gdal_small.png";		  
+			  } else {
+			      result = dir + "no_picture_small.png";		  
+			  }
+			  return result;	  	    		
+	        }
+	  	    function getID(response){
+	  		  var response_split = response.split('<div id="{');
+	  		  var arraysize = 0;
+	  		  var response_id = [];
+	  		  for (i=1; i < response_split.length; i++){
+	  			   var buffer = response_split[i].split('}" class="title">')
+	  			   response_id[arraysize] = buffer[0];
+	  			   arraysize++;
+	  		  }
+	  		  return response_id;
+	  	    }
+
+			var response_id = getID(response);
+			var response_split = response.split("The containertype of the described process is");
+			var response_icon = [response_split[0]];
+            
+            for (i=1; i < response_split.length; i++) {
+          	  response_split[i] = response_split[i].replace("</div>", "<splitmark></div>");
+          	  var containerTypeAndPlatformAndX = response_split[i].split("<splitmark>");
+          	  var containerTypeAndPlatform = containerTypeAndPlatformAndX[0].split("The platform of the described process is");
+          	  var containerType = containerTypeAndPlatform[0].replace(/\s/g, '').split("/");
+          	  var platform = containerTypeAndPlatform[1].replace(/\s/g, '').split("/");
+          	  response_icon.push("<br />");
+          	  response_icon.push("<a href='/geoportal/rest/manage/document?download={"  + response_id[i-1] + "}'><img src='/geoportal/catalog/images/mr_harvest_inact.gif' height='14' width='14' title='Download'></a>");
+          	  response_icon.push("<a href='/geoportal/catalog/wps-js/run.html?uuid={"  + response_id[i-1] + "}'><img src='/geoportal/catalog/images/ContentType_geographicService.png' height='14' width='14' title='Execute'></a>");
+          	  response_icon.push("<br />");
+          	  response_icon.push("<div style='border-top-right-radius:10px; text-align:left; padding:3px; font-size:10px; background-color:#a4aeb8; color:#ffffff; width: 200px; float:left; margin-right:2px; margin-top:4px; margin-bottom:4px;'>");
+          	  response_icon.push("<img src='" + getPlatformIcon(platform[platform.length-1]) + "' align='left' style='margin-right:5px'/>");
+          	  response_icon.push("Platform:<br />");
+          	  if (isEmpty(platform[platform.length-1])){
+              	  response_icon.push("not defined");
+          	  } else {
+              	  response_icon.push(platform[platform.length-1]);
+              }
+          	  response_icon.push("</div>");
+          	  response_icon.push("<div style='border-top-right-radius:10px; text-align:left; padding:3px; font-size:10px; background-color:#a4aeb8; color:#ffffff; width: 200px; float:left; margin-top:4px; margin-bottom:4px;'>");
+          	  response_icon.push("<img src='" + getContainerTypeIcon(containerType[containerType.length-1]) + "' align='left' style='margin-right:5px'/>");
+          	  response_icon.push("Container type:<br />");          	  
+          	  if (isEmpty(containerType[containerType.length-1])){
+              	  response_icon.push("not defined");
+          	  } else {
+              	  response_icon.push(containerType[containerType.length-1]);          		  
+          	  }
+          	  response_icon.push("</div><div style='clear:both;'></div>");
+          	  for (j=1; j < containerTypeAndPlatformAndX.length; j++) {
+          		  response_icon.push(containerTypeAndPlatformAndX[j]);
+          	  }
+            }
+  	        dojo.byId(this.resultsBodyId).innerHTML = response_icon.join("");
+//  	        dojo.byId(this.resultsBodyId).innerHTML = response;  	
             dojo.query("div.title",this.resultsBodyId).forEach(dojo.hitch(this, function(item) {
               dojo.connect(item,"onclick",this,"onTitleClicked"); 
             }));
