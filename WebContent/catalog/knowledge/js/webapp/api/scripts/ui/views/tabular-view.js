@@ -396,7 +396,7 @@ Exhibit.TabularView.prototype._reconstruct = function() {
 								});
 					}
 					
-					if (column.label == "Similar operator(s)") {
+					if (column.label == "Related geooperator(s)") {
 						if (td.textContent != "" && td.textContent != undefined) {
 							var similars = new Array();
 
@@ -408,10 +408,11 @@ Exhibit.TabularView.prototype._reconstruct = function() {
 							// element is already converted and localized as
 							// html td-tag, therefore the distinction between
 							// different languages is essential
+                            // JB: Maybe the non-English tests can be removed as there's no alternative language served.
 							var languagesplitter = "";
 							if (td.textContent.indexOf(" and ") != -1) {
 								similars = td.textContent.split(" and ");
-								languagesplitter = " and ";
+								languagesplitter = ", ";
 							}
 							if (td.textContent.indexOf(" und ") != -1) {
 								similars = td.textContent.split(" und ");
@@ -425,6 +426,13 @@ Exhibit.TabularView.prototype._reconstruct = function() {
 								similars = td.textContent.split(" och ");
 								languagesplitter = " och ";
 							}
+                            // JB: If more than two geooperators are related, split at comma and remove the 'and'.
+                            if (td.textContent.indexOf(", ") != -1) {
+                                similars = td.textContent.split(", ");
+                                var tempString = similars[similars.length - 1].replace("and ", ""); // JB: needs to be extended to include alternative languages.
+                                similars[similars.length -1] = tempString;
+                                languagesplitter = ", ";
+                            }
 
 							//searching for matching id for the similar object(s)
 							var tdText = "";

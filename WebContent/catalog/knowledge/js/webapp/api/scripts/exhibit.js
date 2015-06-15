@@ -348,7 +348,14 @@ Exhibit._Impl.prototype._showFocusDialogOnItem = function(itemID) {
     else itemLens = tempUiContext.getLensRegistry().createLens(itemID, dom.lensContainer, tempUiContext);
     //END CH
     
-    dom.elmt.style.top = (document.body.scrollTop + 100) + "px";
+    //read Chrome||Opera scrollTop
+    var scrollTop = document.body.scrollTop;
+    if (scrollTop == 0){
+    	//read Firefox scrollTop
+    	scrollTop = document.body.parentNode.scrollTop;
+    }
+    
+    dom.elmt.style.top = (scrollTop + 100) + "px";
     document.body.appendChild(dom.elmt);
 
     SimileAjax.WindowManager.registerEvent(

@@ -20,10 +20,17 @@
 </head>
 <body>
 <div ex:role="collection" ex:itemTypes="Geooperator"></div>
- 
+<div id="page" style="">
+    <a href="http://tu-dresden.de/uw/geo/gis" target="_blank"><div class="header_logo"></div></a>
+    <a href="http://52north.org/" target="_blank"><div class="header_logo_52n"></div></a>
+    <div class="header_title">
+        <h1 style="width:600px;">Geooperator browser</h1>
+    </div>
+    <div class="line"></div>
+    <h2>Perspectives on geoprocessing</h2>
 
     <div id="description" class="content_description">
-         
+        
         <p><input type="button" name="wizardButton" id="wizardButton" value="Toggle wizard mode" onclick="toggleWizard()"></p>
 
         <div id="wizard" style="visibility: hidden; height: 0px;">
@@ -95,11 +102,29 @@
             <!-- TABELLE -->
             <div ex:role="view" ex:viewClass="Tabular"
                  ex:columns=".prefLabel, .scopeNote, .relatedMatch, .relatedGeooperators"
-                 ex:columnLabels="Name, Description, Categories, Similar operator(s)">
+                 ex:columnLabels="Name, Description, Categories, Related geooperator(s)">
 
             </div>
         <!-- end of the area, where exhibit will do its magic -->
-        </div> 
-    </div> 
+        </div>
+
+        <div class="line"></div>
+
+        <p id="imprint">
+            The software is based on <a href="http://simile-widgets.org/exhibit2/" target="_blank">Exihibt 2</a> which
+            originally is released under this <a href="http://simile.mit.edu/license.html" target="_blank">BSD licence</a>.
+            The source code can be accessed at <a href="https://github.com/GeoinformationSystems/GeooperatorBrowser">GitHub</a>.<br>
+            The geooperator browser will not properly work in Internet Explorer. Please use a Chromium-based browser or Mozilla Firefox.<br>
+            Please send any questions to <a href="mailto:johannes.brauner@tu-dresden.de">Johannes Brauner</a>.</p>
+        <p id="imprint">The geooperator thesaurus data model used here is licensed under a
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+            Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br>
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0"
+                                                                                    src="images/license.png" /></a></p>
+        <p id="imprint"></p>
+        <p id="imprint"><a href="http://tu-dresden.de/index_html/impressum" target="_blank">Imprint</a></p>
+
+    </div>
+</div>
 </body>
 </html>

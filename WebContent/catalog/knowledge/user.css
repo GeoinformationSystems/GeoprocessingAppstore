@@ -1,15 +1,20 @@
-body {  
-    font-family: Verdana,Helvetica,Arial,sans-serif;
-    font-style: normal;
-font-variant: normal;
-font-weight: normal;
-line-height: 1.5;
-font-size: 76%;
-color: #4e647e;
+body {
+    background-color: #CDD4E2;
+    color: #666666;
+    font-family: sans-serif;
+    /*font-size: normal;*/
+    font-weight: normal;
     margin: 0;
     padding: 0;
 }
- 
+
+h2, h3 {
+    font-family: "Myriad Pro", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+    text-shadow: 0px 1px 1px silver;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
 td {
     min-width: 140px !important;
     word-break: normal;
@@ -71,6 +76,10 @@ div.exhibit-focusDialog {
     padding: 2em;
     left: 25%;
     right: 25%;
+}
+
+td.exhibit-lens-property-name {
+    width: 200px;
 }
 
 #page {

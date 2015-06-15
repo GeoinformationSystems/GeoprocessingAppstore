@@ -131,6 +131,13 @@ Exhibit.Database._Impl.prototype.loadData = function(o, baseURI) {
     if ("types" in o) {
         this.loadTypes(o.types, baseURI);
     }
+    if (this._types["Geooperator"] == undefined){
+    	 var type = new Exhibit.Database._Type("Geooperator");
+    	 type._custom["pluralLabel"] = "Geooperators";
+    	 type._custom["label"] = "Geooperator";
+    	 type._custom["uri"] = baseURI + "type#Geooperator";
+    	 this._types["Geooperator"] = type;
+    }
     if ("properties" in o) {
         this.loadProperties(o.properties, baseURI);
     }

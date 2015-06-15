@@ -320,7 +320,7 @@ Exhibit.Formatter._URLFormatter.prototype.formatLink = function(values, link,
 
 	var a = document.createElement("a");
 	 
-	if (link.indexOf(":") >= 0 || link.indexOf("-") >=0) {
+	if (link.indexOf(":") >= 0) {
 		a.href = "http://catalog.glues.geo.tu-dresden.de:8080/terraCatalog/Query/ShowCSWInfo.do?fileIdentifier="+link;
 		a.target = "_self";
 	} else {
