@@ -41,7 +41,7 @@ https://github.com/Esri/geoportal-server/wiki/Install-Esri-Geoportal-Server
 3b) Configure database in gptdb2solr.xml <br/> 
 
 4) Deploy 52°North WPS <br/>
-4) Download and deploy WPS release (http://52north.org/communities/geoprocessing/wps/download.html) in your container as "52n-wps-webapp" <br/>
+41) Download and deploy WPS release (http://52north.org/communities/geoprocessing/wps/download.html) in your container as "52n-wps-webapp" <br/>
  
 The Geoprocessing Appstore project uses and integrates a modified <b>ESRI Geoportal Facet</b> project (https://github.com/GeoinformationSystems/GeoprocessingAppstoreFacets). The facet website replaces the default advanced search in the ESRI geoportal. To remove this dependencies and use the default advanced search please modify WebContent/catalog/search/searchBody.jsp -> iframe.
 
