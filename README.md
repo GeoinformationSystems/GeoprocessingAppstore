@@ -24,6 +24,25 @@ Information about the installation can be found here:
 https://github.com/Esri/geoportal-server/wiki/Install-Esri-Geoportal-Server
 (The appstore uses Tomcat and PostGIS)
 
+1) Prepare appstore project
+1a) Run ESRI Geoportal installation (configure database, ...)
+1b) Create WAR file based on Geoprocessing Appstore project and deploy it in your favourite container (e.g. Tomcat) as "appstore"
+1c) Create folders for source code storage and comment storage C:/MCPackage and C:/MCComment 
+1d) Choose folder for indices. Define path in appstore\WEB-INF\classes\gpt\config\gpt.xml -> line 76 (choose an existing folder)
+
+2) Install and deploy solr. 
+2a) Use solr install instructions
+2b) A solr WAR file must be deploy in your container.
+2c) Adapt scheme: Copy file schema.xml (Additional_Configuration_Files) in ..\solr\collection1\conf and overwrite existing file
+2d) Add folder solr\collection1\conf\lib and copy mcp-spliFilter.jar (Additional_Configuration_Files) into this folder
+
+3) Prepare facet project (https://github.com/Esri/geoportal-server/wiki/Geoportal-Facet)
+3a) Create WAR file based on Geoprocessing Appstore Facet project and deploy it in your favourite container (e.g. Tomcat) as "GcService"
+3b) Configure database in gptdb2solr.xml  
+
+4) Deploy 52°North WPS
+4) Download and deploy WPS release (http://52north.org/communities/geoprocessing/wps/download.html) in your container as "52n-wps-webapp"
+
 The geoprocessing appstore needs additional folders: C:/MCPackage (for source code upload) and C:/MCComment (for rating).
 These paths are used/configured in geoportal\WEB-INF\classes\gpt\config\gpt.xml and de.tudresden.gis.manage.xml.Constants.
 
