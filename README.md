@@ -53,6 +53,10 @@ Configurations (e.g. admin, database, ldap, ...) can be made in geoportal\WEB-IN
 
 Features, License, Support, Issues for the ESRI Geoportal Server can be found here: https://github.com/Esri/geoportal-server
 
+## License
+
+The GeoMetaFacet project is licensed under The Apache Software License, Version 2.0
+
 ## Contact (for TUD modifications)
 
 Christin Henzen (christin.henzen@tu-dresden.de)
