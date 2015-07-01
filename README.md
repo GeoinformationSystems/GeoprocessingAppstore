@@ -55,7 +55,7 @@ Features, License, Support, Issues for the ESRI Geoportal Server can be found he
 
 ## License
 
-The GeoMetaFacet project is licensed under The Apache Software License, Version 2.0
+The Geoprocessing Appstore project is licensed under The Apache Software License, Version 2.0
 
 ## Contact (for TUD modifications)
 
