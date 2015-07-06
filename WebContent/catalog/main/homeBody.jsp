@@ -72,12 +72,12 @@ function isEmpty(string){
 	return (!string || 0 === string.length);
 }
 
-function getPlatformIcon(platform){
-  	var dir = "/../geoportal/catalog/images/mcp/icons/"
-  
-  	if (isEmpty(platform)) {
+function getPlatformIcon(platform){ 
+  	var dir = "${pageContext.request.contextPath}/catalog/images/mcp/icons/";
+  	
+  	if (isEmpty(platform)) 
   		return dir + "notDefined_small.png";
-  	}
+  	
 	var stringSplit = platform.split("/");
 	var stringSplitLastIndex = stringSplit[stringSplit.length -1];
     if (stringSplitLastIndex.toLowerCase().indexOf("java") > -1) {
@@ -98,11 +98,11 @@ function getPlatformIcon(platform){
 }
 
 function getContainertypeIcon(containerType){
-	var dir = "/../geoportal/catalog/images/mcp/icons/"
+	var dir =  "${pageContext.request.contextPath}/catalog/images/mcp/icons/";
 	
-		if (isEmpty(containerType)) {
-			return dir + "notDefined_small.png";
-		}
+	if (isEmpty(containerType)) 
+			return dir + "notDefined_small.png"; 
+	
 	var stringSplit = containerType.split("/");
 	var stringSplitLastIndex = stringSplit[stringSplit.length -1];
 	if (stringSplitLastIndex.toLowerCase().indexOf("java") > -1) {

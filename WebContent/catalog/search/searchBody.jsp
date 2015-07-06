@@ -28,8 +28,7 @@
   // interactive map configuration , 
   // the ArcGIS Server Javascript API is explicitly loaded for this page within centeredLayout.jsp,
   // loading the jsapi within the <head> tag reduces flicker on the search page
-  com.esri.gpt.framework.ArcGIS.InteractiveMap imConfig = com.esri.gpt.framework.context.RequestContext
-    .extract(request).getApplicationConfiguration().getInteractiveMap();
+  com.esri.gpt.framework.ArcGIS.InteractiveMap imConfig = com.esri.gpt.framework.context.RequestContext.extract(request).getApplicationConfiguration().getInteractiveMap();
 %>
 <script type="text/javascript">
   dojo.require("dojo.cookie");
@@ -39,37 +38,8 @@
   
   var _frmDjSearchCriteria = null;
   
-  function serilizeFormToCookie() {
-    //dojo.cookie(_cookieLabel, dojo.formToJson("frmSearchCriteria"));
-  }
-  
-  function deserializeFormFromCookie() {
-   /*var func = dojo.hitch(this, function() {
-    if(_frmDjSearchCriteria == null) {
-      _frmDjSearchCriteria = new dijit.form.Form({ id:"frmSearchCriteria" });
-    }
-    debugger;
-    var formValues = dojo.cookie(_cookieLabel);
-    if(formValues == null || formValues == "") {
-      return;
-    }
-    formValues = eval( "(" + formValues + ")");
-    var key;
-    for(key in formValues) {
-      
-      var node = dojo.byId(key);
-      if(node != null && node.value) {
-        var value = formValues[key];
-        alert(value);
-        node.setAttribute("value", value);
-      }
-    }
-    _frmDjSearchCriteria.setValues(formValues);
-   }); 
-   func();
-   */ 
-    //
-  } 
+  function serilizeFormToCookie() {  }
+  function deserializeFormFromCookie() { } 
 
   var gptMapConfig = new GptMapConfig();
   gptMapConfig.mapServiceURL = "<%=imConfig.getMapServiceUrl()%>";
@@ -126,217 +96,11 @@ dojo.declare("SearchMap", null, {
     config.locatorCandidatesId = "locatorCandidates";
     esriConfig.defaults.io.proxyUrl = "<%=request.getContextPath()%>/catalog/download/proxy.jsp";
     esri.config.defaults.io.proxyUrl = "<%=request.getContextPath()%>/catalog/download/proxy.jsp";
-
-    /*this._gptMap = new GptMap();
-    dojo.connect(this._gptMap,"onMapLoaded",this,"onMapLoaded");
-    dojo.connect(this._gptMap,"onExtentChange",this,"onExtentChange");
-    this._gptMap.initialize(config);*/
-
+ 
     this._gptInpEnv = new GptInputEnvelope();
     this._gptInpEnv.initialize(config,this._gptMap,true);
-
-    /*this._gptMapToolbar = new GptMapToolbar();
-    dojo.connect(this._gptMapToolbar,"onMapButtonClicked",this,"onMapButtonClicked");
-    this._gptMapToolbar.initialize(config,this._gptMap);*/
-    
-    /*this._gptLocator = new GptLocator();
-    this._gptLocator.initialize(config,this._gptMap);
-    
-     _initialMinX = parseInt(dojo.byId("frmSearchCriteria:sfsMinX").value);
-     _initialMinY = parseInt(dojo.byId("frmSearchCriteria:sfsMinY").value);
-     _initialMaxX = parseInt(dojo.byId("frmSearchCriteria:sfsMaxX").value);
-     _initialMaxY = parseInt(dojo.byId("frmSearchCriteria:sfsMaxY").value);*/
-  },
-
-  /*onMapLoaded: function() {
-    if (this._gptMap!=null) {      
-      setTimeout(dojo.hitch(this,"zoomToInitExtent",true),1000);
-      this.drawFootPrints();
-      var agsMap = this._gptMap.getAgsMap();
-      if (agsMap != null) {
-        dojo.connect(agsMap,"onMouseMove",this, "onMouseMove");
-        dojo.connect(agsMap,"onMouseOut",this, "onMouseOut");
-      }
-      if (gptMapConfig.mapServiceType=="openstreet" || gptMapConfig.mapServiceType=="wmts") {
-        var slider = dojo.byId("interactiveMap_zoom_slider");
-        if (slider!=null) {
-          if (dojo.isIE) {
-            slider.style.height="120px";
-          } else {
-            slider.style.height="170px";
-          }
-        }
-      }
-    }
-  },
-  
-  clearFootPrints: function() {
-    this._gptMap.clearGraphics();
-  },
-  
-  drawFootPrints:  function() {
-
-    var records = jsMetadata.records;
-    var iRecord, record, iBBox, oBBox;
-    var aExtents = new Array();
-    var aRecordIDs = new Array();
-
-    for (iRecord=0;iRecord<records.length;iRecord++) {
-      record = records[iRecord];
-      if ((record != null) && (record.bboxes != null)) {
-        for (iBBox=0;iBBox<record.bboxes.length;iBBox++) {
-          oBBox = record.bboxes[iBBox];
-          if (oBBox.isDefaultGeometry == false) {
-            var tmp = this.getProcessedExtent(oBBox);
-            tmp.gptMViewIndex = iRecord;
-            aExtents[aExtents.length] = tmp;
-            aRecordIDs[aRecordIDs.length] = iRecord;
-          }
-        }
-      }
-    }
-
-    this._gptMap.projectGCSExtents(aExtents, dojo.hitch(this,function(gfx) {
-      var aGfx = [];
-	    var i, iRecord = -1, invalidRing = false, poly = null, pt, pts = new Array(), graphic, symbol;
-	    if (gfx != null) {
-	      for (i=0;i<gfx.length;i++) {
-	        pt = gfx[i].geometry;
-	        pts[pts.length] = pt;
-	        if ((pt == null) || isNaN(pt.x) || isNaN(pt.y)) invalidRing = true;
-	        if (pts.length == 4) {
-	          iRecord++;
-            graphic = new esri.Graphic();
-            symbol = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_NULL,
-                     new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
-                     new dojo.Color([255,0,0]), 2), new dojo.Color([255,255,0,0.1]));
-            
-            graphic.gptSRTag = "frmSearchCriteria:mdRecords:"+aRecordIDs[iRecord]+":_metadataMainRecordTable";
-            
-             if(pts[3].x == pts[2].x  && pts[3].y == pts[2].y) {
-              symbol = new esri.symbol.SimpleMarkerSymbol(
-                  esri.symbol.SimpleMarkerSymbol.STYLE_CIRCLE, 8, 
-                  new esri.symbol.SimpleLineSymbol(
-                      esri.symbol.SimpleLineSymbol.STYLE_SOLID, 
-                      new dojo.Color([255,0,0]), 1), 
-                      new dojo.Color([255,255,0,0.1]));
-              graphic.setGeometry(pts[3]);
-              graphic.gptArea = 0;
-              graphic.setSymbol(symbol);
-            } else if (invalidRing) {
-		          graphic.setGeometry(null);
-		          graphic.gptArea = 0;
-		          graphic.setSymbol(symbol);
-		        } else {
-		        	graphic.setSymbol(symbol);
-		          poly = new esri.geometry.Polygon(pts[0].spatialReference);
-              // this has been added to adjust to the JS API 1.5 requirement to
-              // have all rings as closed polygons (last point is equal to the first)
-              pts[pts.length] = pts[0];
-	            poly.addRing(pts);
-	            graphic.setGeometry(poly);
-              var extent = poly.getExtent();
-              if (extent!=null) {
-                graphic.gptArea = extent.getWidth() * extent.getHeight();
-              } else {
-                graphic.gptArea = 0;
-              }
-	          }
-
-	          aGfx[aGfx.length] = graphic;
-            invalidRing = false;
-	          pts = new Array();
-	        }
-	      }
-	    }
-
-      aGfx.sort(function(a,b) {return a.gptArea - b.gptArea;});
-      aGfx.reverse();
-      for (iRecord=0;iRecord<aGfx.length;iRecord++) {
-        this._gptMap.addGraphic(aGfx[iRecord]);
-      }
-
-    }));
-
-  },
  
-  highlightFootPrint: function(sTag, bHighlight) {
-    var agsMap = null, aGfx, graphic, i, n, symbol;
-    if (this._gptMap != null) agsMap = this._gptMap.getAgsMap();
-    if ((agsMap != null) && (agsMap.graphics != null) && (agsMap.graphics.graphics != null)) {
-      aGfx = agsMap.graphics.graphics;
-      for (i=0, n=aGfx.length; i<n; i++) {
-        graphic = aGfx[i];
-        if ( graphic.geometry!=null && graphic.gptSRTag != null && graphic.gptSRTag == sTag) {
-        	if(graphic.symbol instanceof esri.symbol.MarkerSymbol)
-          {
-        		symbol = new esri.symbol.SimpleMarkerSymbol(
-                        esri.symbol.SimpleMarkerSymbol.STYLE_CIRCLE, 8, 
-                        new esri.symbol.SimpleLineSymbol(
-                            esri.symbol.SimpleLineSymbol.STYLE_SOLID, 
-                            new dojo.Color([255,0,0]), 1), 
-                            new dojo.Color([255,255,0,0.3]));
-        		if (bHighlight) 
-        			symbol.color = new dojo.Color([255,255,0,0.9]);
-        	} else {
-            symbol = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_NULL,
-                   new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
-                   new dojo.Color([255,0,0]), 2), new dojo.Color([255,255,0,0.3]));
-            if (bHighlight) symbol.style = 
-            	esri.symbol.SimpleFillSymbol.STYLE_SOLID;
-        	}
-          graphic.setSymbol(symbol);
-        }
-      }
-    }
-  },*/
-
-/*	getProcessedExtent: function(bbox) {
-	  var tmp
-	  var lMinX = GptUtils.valChkDouble(bbox.minX,-180.0);
-	  var lMinY = GptUtils.valChkDouble(bbox.minY,-90.0);
-	  var lMaxX = GptUtils.valChkDouble(bbox.maxX,180.0);
-	  var lMaxY = GptUtils.valChkDouble(bbox.maxY,90.0);
-	  if (lMaxY > 90)    {lMaxY = 90;}
-	  if (lMinY < -90)   {lMinY = -90;}
-	  if (lMaxY < lMinY) {tmp = lMaxY; lMaxY = lMinY; lMinY = tmp;}
-	  if (lMaxX < lMinX) {lMaxX = 180; lMinX = -180;}
-	  if (lMaxX > 179.99 )  {lMaxX = 179.99;}
-	  if (lMinX < -179.99 )  {lMinX = -179.99;}
-	  return new esri.geometry.Extent(lMinX,lMinY,lMaxX,lMaxY,new esri.SpatialReference({wkid:4326}));
-	},
-	
-	clearGraphics: function() {
-    this._gptMap.clearGraphics();
   },
-
-  onExtentChange: function(extent) {
-    if (this._gptMap == null) return;
-    var wkid = "";
-    var elXMin = document.getElementById("frmSearchCriteria:sfsVMinX");
-    var elYMin = document.getElementById("frmSearchCriteria:sfsVMinY");
-    var elXMax = document.getElementById("frmSearchCriteria:sfsVMaxX");
-    var elYMax = document.getElementById("frmSearchCriteria:sfsVMaxY");
-    var elWkid = document.getElementById("frmSearchCriteria:sfsVWkid");
-    if ((elXMin != null) && (elYMin != null) && (elXMax != null) && (elYMax != null) && (elWkid != null)) {
-      //if (this._gptMap.isMapProjected()) 
-      wkid = this._gptMap.getAgsMap().spatialReference.wkid;
-      elXMin.value = extent.xmin;
-      elYMin.value = extent.ymin;
-      elXMax.value = extent.xmax;
-      elYMax.value = extent.ymax;
-      elWkid.value = wkid;
-    }
-    if (this._gptInpEnv != null) {
-	    this._gptMap.projectMapExtentToGSC(extent, dojo.hitch(this,function(gfx) {
-	      var ext, poly = this._gptMap.projectedExtentAsPolygon(gfx);
-	      if (poly != null) ext = poly.getExtent();
-	      if (ext != null) {
-	        this._gptInpEnv.setInputEnvelope(ext);
-	      }
-	    }));
-	  }
-  },*/
 
   onLocatorKeyPress: function(e) {
     if (!e) e = window.event;
@@ -582,11 +346,7 @@ function scIsSearchMapReady() {
   var scSearchMap;
   return (GptUtils.exists(scSearchMap) && GptUtils.exists(scSearchMap.getMap) && GptUtils.exists(scSearchMap.getMap()) && GptUtils.exists(scSearchMap.getMap().loaded) && GptUtils.exists(scSearchMap.getMap().loaded == true));
 }
-    
-      
  
-   
-
 /**
 Submits from when on enter.
 @param event The event variable
@@ -683,8 +443,7 @@ function uncheckForm() {
 <script>
 //extracts search string from url, sends it to solr search field in iframe and clicks seacrhc button 
 function startExternalSearch() {
-	var parameter = location.search.substring(1);
-//	console.log(parameter !== undefined);
+	var parameter = location.search.substring(1); 
 	var temp = parameter.split("=");
 	if(temp[1] !== undefined){
 		searchString = unescape(temp[1]);
@@ -697,33 +456,7 @@ function startExternalSearch() {
 }
 </script>
 
-<!-- 
-<h:form id="frmSearchCriteria" 
-  
-  onkeypress="javascript:return scSubmitForm(event, this);" 
-  onsubmit="return checkFormSubmitted(this);" >
- 	<% // two columns containing criteria/mysearches and results %>
-	<h:panelGrid id="spMain" columns="2" styleClass="columnsTable">
-		<h:panelGroup>
-			<jsp:include page="/catalog/search/criteria.jsp" />
-		</h:panelGroup>
-		<h:panelGroup>
-			<h:panelGroup rendered="#{not PageContext.roleMap['anonymous']}">
-				<jsp:include page="/catalog/search/mysearches.jsp" />
-			</h:panelGroup>
-			<h:panelGroup id="pngResults">
-			  <jsp:include page="/catalog/search/results.jsp" />
-			</h:panelGroup>
-		</h:panelGroup>
-	</h:panelGrid>
-
-</h:form>
- -->
-<f:verbatim>
-  <!-- iframe id="frmDistSearch" width="0px"  
-    onload="javascript:distributedSearchDone()"
-    style="border:0px; visibility:hidden; display: none;">
-  </iframe-->
+<f:verbatim> 
 </f:verbatim>
 
 

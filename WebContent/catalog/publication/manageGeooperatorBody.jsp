@@ -26,18 +26,72 @@
 		styleClass="formTable" columnClasses="formLabelColumn,formInputColumn">
  
  		<% //add geooperator %>
- 		<h:outputText escape="false" styleClass="prompt"
+  		<h:outputText escape="false" styleClass="prompt"
 		value="#{gptMsg['catalog.publication.addGeooperator.prompt']}" />
 		<h:outputText value=""/>
  		
-		<h:outputText styleClass="requiredField" value="Name of new geooperator" />
+ 		<h:outputText styleClass="requiredField" value="Name of new geooperator" />
 		<h:inputText id="geoopTitle" size="50" maxlength="128" value="#{ManageGeooperatorController.geooperator}" />
 
 		<h:outputText value="Parent of new geooperator" />
 		<h:selectOneMenu id="geoopParentSelect" value="#{ManageGeooperatorController.parentgeooperator}">
 			<f:selectItems value="#{ManageGeooperatorController.selectableGeooperators.items}" />
 		</h:selectOneMenu>
+		
+		<!-- 
+		<h:outputText styleClass="requiredField" value="definition" />
+		<h:inputText id="definition" size="50" maxlength="128" value="#{ManageGeooperatorController.definition}" />
 
+		<h:outputText value="scopeNote" />
+		<h:inputText id="scopeNote" size="50" maxlength="128" value="#{ManageGeooperatorController.scopeNote}" />		
+
+		<h:outputText value="narrowMatch" />
+		<h:selectOneMenu id="narrowMatch" value="#{ManageGeooperatorController.narrowMatch}">
+			<f:selectItems value="#{ManageGeooperatorController.selectableGeooperators.items}" />
+		</h:selectOneMenu>
+		
+		<h:outputText value="broadMatch" />
+		<h:selectOneMenu id="broadMatch" value="#{ManageGeooperatorController.broadMatch}">
+			<f:selectItems value="#{ManageGeooperatorController.selectableGeooperators.items}" />
+		</h:selectOneMenu>
+		
+		<h:outputText value="closeMatch" />
+		<h:selectOneMenu id="closeMatch" value="#{ManageGeooperatorController.closeMatch}">
+			<f:selectItems value="#{ManageGeooperatorController.selectableGeooperators.items}" />
+		</h:selectOneMenu>
+		
+		<h:outputText value="formalCategories" />
+		<h:selectOneMenu id="formalCategories" value="#{ManageGeooperatorController.formalCategories}">
+			<f:selectItems value="#{ManageGeooperatorController.selectableGeooperators.items}" />
+		</h:selectOneMenu>
+		
+		<h:outputText value="geodataCategories" />
+		<h:selectOneMenu id="geodataCategories" value="#{ManageGeooperatorController.geodataCategories}">
+			<f:selectItems value="#{ManageGeooperatorController.selectableGeooperators.items}" />
+		</h:selectOneMenu>
+		
+		<h:outputText value="geoinformaticsCategories" />
+		<h:selectOneMenu id="geoinformaticsCategories" value="#{ManageGeooperatorController.geoinformaticsCategories}">
+			<f:selectItems value="#{ManageGeooperatorController.selectableGeooperators.items}" />
+		</h:selectOneMenu>
+		
+		<h:outputText value="legacyGISCategories" />
+		<h:selectOneMenu id="legacyGISCategories" value="#{ManageGeooperatorController.legacyGISCategories}">
+			<f:selectItems value="#{ManageGeooperatorController.selectableGeooperators.items}" />
+		</h:selectOneMenu>
+		
+		<h:outputText value="pragmaticCategories" />
+		<h:selectOneMenu id="pragmaticCategories" value="#{ManageGeooperatorController.pragmaticCategories}">
+			<f:selectItems value="#{ManageGeooperatorController.selectableGeooperators.items}" />
+		</h:selectOneMenu>
+		
+		<h:outputText value="technicalCategories" />
+		<h:selectOneMenu id="technicalCategories" value="#{ManageGeooperatorController.technicalCategories}">
+			<f:selectItems value="#{ManageGeooperatorController.selectableGeooperators.items}" />
+		</h:selectOneMenu>
+
+		-->
+		
 		<h:outputText value="" />
 		<h:commandButton id="submit"
 			value="#{gptMsg['catalog.publication.addMetadata.button.submit']}"
